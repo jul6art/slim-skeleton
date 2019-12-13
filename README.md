@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://devinthehood.com"><img src="https://github.com/jul6art/devinthehood/blob/assets/img/logo.png" alt="logo VsWeb"></a>
+    <a href="https://devinthehood.com"><img src="https://github.com/jul6art/devinthehood/blob/assets/img/logo.png?raw=true" alt="logo dev in the hood"></a>
 </p>
 
 <p align="center">
@@ -17,4 +17,4 @@ License
 
 The Slim Skeleton is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-&copy; 2019 [dev in the hood](https://devinthehood.be)
+&copy; 2019 [dev in the hood](https://devinthehood.com)
