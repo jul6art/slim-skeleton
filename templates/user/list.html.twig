@@ -1,0 +1,7 @@
+{% extends 'layout/layout-base.html.twig' %}
+
+{% block content %}
+    {% for user in users %}
+        {{ dump(user) }}
+    {% endfor %}
+{% endblock content %}
