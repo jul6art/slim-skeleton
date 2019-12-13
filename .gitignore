@@ -1,6 +1,10 @@
 .idea/
 /coverage/
+/node_modules/
 /vendor/
 /logs/*
 !/logs/README.md
 /app/settings.php
+/yarn.lock
+/public/assets/
+/hook_local.sh

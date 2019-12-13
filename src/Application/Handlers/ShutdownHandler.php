@@ -7,6 +7,10 @@ use App\Application\ResponseEmitter\ResponseEmitter;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Exception\HttpInternalServerErrorException;
 
+/**
+ * Class ShutdownHandler
+ * @package App\Application\Handlers
+ */
 class ShutdownHandler
 {
     /**

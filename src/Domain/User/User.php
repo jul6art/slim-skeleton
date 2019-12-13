@@ -5,6 +5,10 @@ namespace App\Domain\User;
 
 use JsonSerializable;
 
+/**
+ * Class User
+ * @package App\Domain\User
+ */
 class User implements JsonSerializable
 {
     /**

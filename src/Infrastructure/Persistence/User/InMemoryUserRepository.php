@@ -7,6 +7,10 @@ use App\Domain\User\User;
 use App\Domain\User\UserNotFoundException;
 use App\Domain\User\UserRepository;
 
+/**
+ * Class InMemoryUserRepository
+ * @package App\Infrastructure\Persistence\User
+ */
 class InMemoryUserRepository implements UserRepository
 {
     /**

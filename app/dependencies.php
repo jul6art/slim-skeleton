@@ -29,7 +29,7 @@ return function (ContainerBuilder $containerBuilder) {
 
     $containerBuilder->addDefinitions([
         Twig::class => function (ContainerInterface $c) {
-            return new Twig('templates', ['cache' => false]);
+            return new Twig('../templates', ['cache' => false]);
         },
     ]);
 };

@@ -9,6 +9,10 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
 
+/**
+ * Class HomeAction
+ * @package App\Application\Actions
+ */
 class HomeAction extends Action
 {
     /**

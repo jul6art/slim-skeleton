@@ -5,6 +5,10 @@ namespace App\Application\Actions;
 
 use JsonSerializable;
 
+/**
+ * Class ActionPayload
+ * @package App\Application\Actions
+ */
 class ActionPayload implements JsonSerializable
 {
     /**

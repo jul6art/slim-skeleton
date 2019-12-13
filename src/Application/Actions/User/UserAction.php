@@ -8,6 +8,10 @@ use App\Domain\User\UserRepository;
 use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
 
+/**
+ * Class UserAction
+ * @package App\Application\Actions\User
+ */
 abstract class UserAction extends Action
 {
     /**

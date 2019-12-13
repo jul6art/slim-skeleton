@@ -11,6 +11,10 @@ use Slim\Exception\HttpBadRequestException;
 use Slim\Exception\HttpNotFoundException;
 use Slim\Views\Twig;
 
+/**
+ * Class Action
+ * @package App\Application\Actions
+ */
 abstract class Action
 {
     /**

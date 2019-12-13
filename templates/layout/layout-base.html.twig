@@ -14,11 +14,16 @@
         </center>
 
     </h1>
-    <img src="{{ asset('img/logo.png') }}" style="height: 200px; width: auto;">
+    <img src="{{ asset('img/logo.png') }}">
     <h2>Keep calm</h2>
+    <a href="/users">User list</a>
     <div>
         {% block content %}
         {% endblock content %}
     </div>
+
+{% block javascripts %}
+    {% include 'includes/_javascripts.html.twig' %}
+{% endblock javascripts %}
 </body>
 </html>

@@ -5,6 +5,10 @@ namespace App\Application\Actions\User;
 
 use Psr\Http\Message\ResponseInterface as Response;
 
+/**
+ * Class ListUsersAction
+ * @package App\Application\Actions\User
+ */
 class ListUsersAction extends UserAction
 {
     /**
