@@ -12,6 +12,23 @@ jul6art/slim-skeleton
 Base slim project
 ----------------------
 
+> :warning: Work in progress so keep calm. The good news: this is maintained!
+
+Requirements
+------------
+
+* **php** >= 7.4
+* **mysql**
+* **composer**
+* **yarn**
+
+Includes
+--------
+
+* **twig**
+* **webpack**
+* **swiftmailer**
+
 License
 -------
 
