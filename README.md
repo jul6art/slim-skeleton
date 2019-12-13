@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://devinthehood.com"><img src="https://github.com/jul6art/devinthehood/blob/master/assets/img/logo.png?raw=true" alt="logo dev in the hood"></a>
+    <a href="https://devinthehood.com"><img src="https://github.com/jul6art/slim-skeleton/blob/master/assets/img/logo.png?raw=true" alt="logo dev in the hood"></a>
 </p>
 
 <p align="center">
