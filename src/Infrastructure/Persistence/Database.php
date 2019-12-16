@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Services\Database;
+namespace App\Infrastructure\Persistence;
 
 use \PDO;
 use \PDOStatement;

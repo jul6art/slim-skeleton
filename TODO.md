@@ -1,6 +1,5 @@
 https://colorlib.com/preview/theme/martin/index.html#
 
-- pdo (service entitymanager dispo dans abstractcontroller)
 - csrf
 - swift
 - users 

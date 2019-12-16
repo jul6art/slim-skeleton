@@ -8,8 +8,8 @@ use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
-use App\Application\Services\Database\ConnectionInterface;
-use App\Application\Services\Database\Database;
+use App\Infrastructure\Persistence\ConnectionInterface;
+use App\Infrastructure\Persistence\Database;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([

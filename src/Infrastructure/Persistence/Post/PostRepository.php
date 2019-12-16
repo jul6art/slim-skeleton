@@ -3,7 +3,7 @@
 
 namespace App\Infrastructure\Persistence\Post;
 
-use App\Application\Services\Database\ConnectionInterface;
+use App\Infrastructure\Persistence\ConnectionInterface;
 use App\Infrastructure\Persistence\RepositoryInterface;
 use stdClass;
 
