@@ -34,13 +34,13 @@ class DumpExtension extends AbstractExtension {
 
         ob_start();
         highlight_string("<?php\n" . var_export($data, true) . "?>");
-        $highlighted_output = ob_get_clean();
+        $output = ob_get_clean();
 
-        $highlighted_output = str_replace( "&lt;?php", '', $highlighted_output );
-        $highlighted_output = str_replace( "?&gt;", '', $highlighted_output );
+        $output = str_replace( "&lt;?php", '', $output );
+        $output = str_replace( "?&gt;", '', $output );
         $closeTag = '</div>';
 
-        echo "$openTag$highlighted_output$closeTag";
+        echo "$openTag$output$closeTag";
     }
 
 }

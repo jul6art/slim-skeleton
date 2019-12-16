@@ -14,6 +14,12 @@ return function (ContainerBuilder $containerBuilder) {
                 'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
                 'level' => Logger::DEBUG,
             ],
+            'database' => [
+                'username' => 'symfony',
+                'password' => 'symfony',
+                'host' => 'localhost',
+                'database' => 'slim_skeleton',
+            ],
         ],
     ]);
 };
