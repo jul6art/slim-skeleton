@@ -8,9 +8,9 @@
 </p>
 
 jul6art/slim-skeleton
-========================
+=====================
 Base slim project
-----------------------
+-----------------
 
 > :warning: Work in progress so keep calm. The good news: this is maintained!
 

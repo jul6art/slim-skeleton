@@ -4,6 +4,7 @@ https://colorlib.com/preview/theme/martin/index.html#
 - swift
 - users 
     login
+        https://github.com/jeremykendall/slim-auth
     voter (+ abstractcontroller gettoken isgranted denyacces ...) 
         utiliser routecontext pour appliquer automatiquement le bon voter
             http://www.slimframework.com/docs/v4/cookbook/retrieving-current-route.html
