@@ -15,10 +15,11 @@ return function (ContainerBuilder $containerBuilder) {
                 'level' => Logger::DEBUG,
             ],
             'database' => [
-                'host' => 'localhost',
-                'database' => 'slim_skeleton',
-                'username' => 'symfony',
-                'password' => 'symfony',
+                'host' => getenv('DATABASE_HOST'),
+                'port' => getenv('DATABASE_PORT'),
+                'database' => getenv('DATABASE_NAME'),
+                'username' => getenv('DATABASE_USER'),
+                'password' => getenv('DATABASE_PASSWORD'),
             ],
         ],
     ]);
