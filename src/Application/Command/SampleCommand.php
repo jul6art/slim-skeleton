@@ -36,7 +36,7 @@ class SampleCommand implements CommandInterface
 
         // Throw if no arguments provided
         if (empty($args)) {
-            throw new RuntimeException("No arguments passed to command");
+            throw new RuntimeException("ERROR! No arguments passed to command");
         }
 
         $firstArg = $args[0];

@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+use App\Application\Command\DatabaseCreateCommand;
+use App\Application\Command\DatabaseDropCommand;
 use App\Application\Command\SampleCommand;
 use DI\ContainerBuilder;
 use Monolog\Logger;
@@ -25,6 +27,8 @@ return function (ContainerBuilder $containerBuilder) {
             ],
         ],
         'commands' => [
+            'skeleton:database:create' => DatabaseCreateCommand::class,
+            'skeleton:database:drop' => DatabaseDropCommand::class,
             'skeleton:sample' => SampleCommand::class,
         ],
     ]);

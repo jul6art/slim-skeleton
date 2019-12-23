@@ -31,8 +31,9 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
+        'firstName',
+        'lastName',
         'email',
-        'Name',
         'password',
     ];
 
@@ -53,7 +54,7 @@ class User extends Model
      * @param string $firstName
      * @return $this
      */
-    public function setFirstnNme(string $firstName): self
+    public function setFirstName(string $firstName): self
     {
         $this->firstName = trim($firstName);
     }
