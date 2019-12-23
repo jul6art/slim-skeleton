@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+use App\Infrastructure\Persistence\Database;
+use App\Infrastructure\Persistence\DatabaseInterface;
 use DI\ContainerBuilder;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -8,8 +10,6 @@ use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
-use App\Infrastructure\Persistence\ConnectionInterface;
-use App\Infrastructure\Persistence\Database;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
@@ -31,20 +31,13 @@ return function (ContainerBuilder $containerBuilder) {
 
     $containerBuilder->addDefinitions([
         Twig::class => function (ContainerInterface $c) {
-            return new Twig('../templates', ['cache' => false]);
+            return new Twig($c->get('settings')['project_dir'] . 'templates', ['cache' => false]);
         },
     ]);
 
     $containerBuilder->addDefinitions([
-        ConnectionInterface::class => function (ContainerInterface $c) {
-            $settings = $c->get('settings');
-
-            $dbSettings = $settings['database'];
-
-            $pdo = new \PDO("mysql:host=" . $dbSettings['host'] . ";dbname=" . $dbSettings['database'], $dbSettings['username'], $dbSettings['password']);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            return (new Database())->setConnection($pdo);
+        DatabaseInterface::class => function (ContainerInterface $c) {
+            return new Database();
         },
     ]);
 };

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Application\Actions\User;
 
 use App\Domain\User\UserRepository;
-use App\Infrastructure\Persistence\Post\PostRepository;
+use App\Infrastructure\Persistence\DatabaseInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
@@ -15,23 +15,22 @@ use Slim\Views\Twig;
  */
 class ListUsersAction extends UserAction
 {
-
     /**
-     * @var PostRepository
+     * @var DatabaseInterface
      */
-    private $postRepository;
+    private $database;
 
     /**
      * ListUsersAction constructor.
      * @param LoggerInterface $logger
      * @param Twig $twig
      * @param UserRepository $userRepository
-     * @param PostRepository $postRepository
+     * @param DatabaseInterface $database
      */
-    public function __construct(LoggerInterface $logger, Twig $twig, UserRepository $userRepository, PostRepository $postRepository)
+    public function __construct(LoggerInterface $logger, Twig $twig, UserRepository $userRepository, DatabaseInterface $database)
     {
         parent::__construct($logger, $twig, $userRepository);
-        $this->postRepository = $postRepository;
+        $this->database = $database;
     }
 
     /**
@@ -41,7 +40,9 @@ class ListUsersAction extends UserAction
     {
         $users = $this->userRepository->findAll();
 
-        $this->dump($this->postRepository->findAll());
+        //$this->dd($this->database->getCapsule());
+
+        //$this->dump($this->postRepository->findAll());
 
         $this->logger->info("Users list was viewed.");
 

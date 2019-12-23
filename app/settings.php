@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use App\Application\Command\SampleCommand;
 use DI\ContainerBuilder;
 use Monolog\Logger;
 
@@ -8,6 +9,7 @@ return function (ContainerBuilder $containerBuilder) {
     // Global Settings Object
     $containerBuilder->addDefinitions([
         'settings' => [
+            'project_dir' => __DIR__ . '/../',
             'displayErrorDetails' => true, // Should be set to false in production
             'logger' => [
                 'name' => 'slim-skeleton',
@@ -21,6 +23,9 @@ return function (ContainerBuilder $containerBuilder) {
                 'username' => getenv('DATABASE_USER'),
                 'password' => getenv('DATABASE_PASSWORD'),
             ],
+        ],
+        'commands' => [
+            'SampleCommand' => SampleCommand::class,
         ],
     ]);
 };

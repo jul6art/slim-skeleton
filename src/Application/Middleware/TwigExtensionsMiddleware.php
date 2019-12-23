@@ -15,7 +15,8 @@ use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
  * Class TwigExtensionsMiddleware
  * @package App\Application\Middleware
  */
-class TwigExtensionsMiddleware implements Middleware {
+class TwigExtensionsMiddleware implements Middleware
+{
     /**
      * @var Twig
      */

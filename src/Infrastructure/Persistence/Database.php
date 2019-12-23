@@ -2,151 +2,63 @@
 
 namespace App\Infrastructure\Persistence;
 
-use \PDO;
-use \PDOStatement;
-use stdClass;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 /**
  * Class Database
- * @package App\Application\Services\Database
+ * @package App\Infrastructure\Persistence
  */
-class Database implements ConnectionInterface
+class Database implements DatabaseInterface
 {
     /**
-     * @var PDO
+     * @var Capsule
      */
-    private $connection;
+    private $capsule;
 
-    /**
-     * @return PDO
-     */
-    public function getConnection(): PDO
+    public function __construct()
     {
-        return $this->connection;
+        return $this->buildCapsule();
     }
 
     /**
-     * @param PDO $connection
+     * @return Capsule
+     */
+    public function getCapsule(): Capsule
+    {
+        return $this->capsule;
+    }
+
+    /**
+     * @param Capsule $capsule
      * @return Database
      */
-    public function setConnection(PDO $connection): Database
+    public function setCapsule(Capsule $capsule): DatabaseInterface
     {
-        $this->connection = $connection;
+        $this->capsule = $capsule;
         return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function beginTransaction(): bool
+    public function buildCapsule(): void
     {
-        return $this->connection->beginTransaction();
-    }
+        $capsule = new Capsule;
 
-    /**
-     * @inheritDoc
-     */
-    public function commit(): bool
-    {
-        return $this->connection->commit();
-    }
+        $capsule->addConnection([
+            'driver'    => 'mysql',
+            'host'      => getenv('DATABASE_HOST'),
+            'database'  => getenv('DATABASE_NAME'),
+            'username'  => getenv('DATABASE_USER'),
+            'password'  => getenv('DATABASE_PASSWORD'),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+        ]);
 
-    /**
-     * @inheritDoc
-     */
-    public function errorCode(): string
-    {
-        return $this->connection->errorCode();
-    }
+        // Make this Capsule instance available globally via static methods... (optional)
+        $capsule->setAsGlobal();
 
-    /**
-     * @inheritDoc
-     */
-    public function errorInfo(): array
-    {
-        return $this->connection->errorInfo();
-    }
+        // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
+        $capsule->bootEloquent();
 
-    /**
-     * @inheritDoc
-     */
-    public function exec(string $statement): int
-    {
-        return $this->connection->exec($statement);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function inTransaction(): bool
-    {
-        return $this->connection->inTransaction();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function lastInsertId(string $name = null): string
-    {
-        return $this->connection->lastInsertId($name);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function prepare(string $statement, array $driverOptions = []): PDOStatement
-    {
-        return $this->connection->prepare($statement, $driverOptions);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function query(string $statement): PDOStatement
-    {
-        return $this->connection->query($statement);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function quote(string $string, int $parameterType = PDO::PARAM_STR): string
-    {
-        return $this->connection->quote($string, $parameterType);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function rollBack(): bool
-    {
-        return $this->connection->rollBack();
-    }
-
-    /**
-     * @param string $table
-     * @param int $id
-     * @return stdClass
-     */
-    public function find(string $table, int $id): stdClass
-    {
-        $query = $this->connection->prepare("SELECT * FROM $table WHERE id = $id");
-
-        $query->execute();
-
-        return $query->fetch(PDO::FETCH_OBJ);
-    }
-
-    /**
-     * @param string $table
-     * @return array
-     */
-    public function findAll(string $table): array
-    {
-        $query = $this->connection->prepare("SELECT * FROM $table");
-
-        $query->execute();
-
-        return $query->fetchAll(PDO::FETCH_OBJ);
+        $this->setCapsule($capsule);
     }
 }

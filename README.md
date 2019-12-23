@@ -25,9 +25,81 @@ Requirements
 Includes
 --------
 
+* **dotenv**
 * **twig**
 * **webpack**
 * **swiftmailer**
+
+Commands
+--------
+
+Commands must be placed in **src/Application/Command** directory and implements **src/Application/Command/CommandInterface**
+
+```php
+<?php
+
+namespace App\Application\Command;
+
+use Psr\Container\ContainerInterface;
+use RuntimeException;
+
+/**
+ * Class SampleCommand
+ * @package App\Application\Command
+ */
+class SampleCommand implements CommandInterface
+{
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
+     * SampleCommand constructor.
+     * @param ContainerInterface $container
+     */
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
+    /**
+     * @param $args
+     * @return mixed
+     */
+    public function command($args)
+    {
+        // Access items in container
+        $settings = $this->container->get('settings');
+
+        // Throw if no arguments provided
+        if (empty($args)) {
+            throw new RuntimeException("No arguments passed to command");
+        }
+
+        $firstArg = $args[0];
+
+        // Output the first argument
+        return $firstArg;
+    }
+}
+```
+
+Declare your command in **settings.php** in commands section.
+
+```php
+$containerBuilder->addDefinitions([
+    'commands' => [
+        'SampleCommand' => SampleCommand::class,
+    ],
+]);
+```
+
+You can now call that command with composer
+
+```console
+$ composer cli SampleCommand arg1 arg2
+```
 
 License
 -------

@@ -7,8 +7,6 @@ use App\Application\ResponseEmitter\ResponseEmitter;
 use DI\ContainerBuilder;
 use Slim\Factory\AppFactory;
 use Slim\Factory\ServerRequestCreatorFactory;
-use Slim\Views\Twig;
-use Slim\Views\TwigMiddleware;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -19,11 +17,10 @@ if (false) { // Should be set to true in production
 	$containerBuilder->enableCompilation(__DIR__ . '/../var/cache');
 }
 
-// load env files
+// Set up settings
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../', ['.env.local', '.env']);
 $dotenv->load();
 
-// Set up settings
 $settings = require __DIR__ . '/../app/settings.php';
 $settings($containerBuilder);
 

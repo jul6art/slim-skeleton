@@ -26,6 +26,7 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "fullpipe/twig-webpack-extension": "^2.0",
+        "illuminate/database": "^6.8",
         "monolog/monolog": "^1.24",
         "php-di/php-di": "^6.0",
         "slim/psr7": "^0.5",
@@ -52,6 +53,7 @@
     },
     "scripts": {
         "start": "php -S localhost:8080 -t public",
-        "test": "phpunit"
+        "test": "phpunit",
+        "cli": "php public/index.php"
     }
 }
