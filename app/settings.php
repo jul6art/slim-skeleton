@@ -25,7 +25,7 @@ return function (ContainerBuilder $containerBuilder) {
             ],
         ],
         'commands' => [
-            'SampleCommand' => SampleCommand::class,
+            'skeleton:sample' => SampleCommand::class,
         ],
     ]);
 };

@@ -90,7 +90,7 @@ Declare your command in **settings.php** in commands section.
 ```php
 $containerBuilder->addDefinitions([
     'commands' => [
-        'SampleCommand' => SampleCommand::class,
+        'skeleton:sample' => SampleCommand::class,
     ],
 ]);
 ```
@@ -98,7 +98,7 @@ $containerBuilder->addDefinitions([
 You can now call that command with composer
 
 ```console
-$ composer cli SampleCommand arg1 arg2
+$ composer cli skeleton:sample arg1 arg2
 ```
 
 License
