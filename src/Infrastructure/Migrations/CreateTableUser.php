@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Migrations;
 
+use App\Domain\Constants\TableName;
 use Illuminate\Database\Schema\Blueprint;
 
 /**
@@ -12,7 +13,7 @@ class CreateTableUser extends AbstractMigration
 {
     public function up(): void
     {
-        $this->schema->create('user', function (Blueprint $table) {
+        $this->schema->create(TableName::TABLE_NAME_USER, function (Blueprint $table) {
             // Auto-increment id
             $table->increments('id');
             $table->string('firstName',100);

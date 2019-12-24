@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Application\Actions\User;
 
 use App\Application\Actions\AbstractAction;
-use App\Domain\User\UserRepository;
+use App\Domain\Repository\UserRepository;
 use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
 

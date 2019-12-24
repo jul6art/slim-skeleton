@@ -1,64 +1,66 @@
 <?php
-declare(strict_types=1);
 
-namespace App\Domain\User;
+Namespace App\Domain\User;
 
-use JsonSerializable;
+use App\Domain\Constants\TableName;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class User
- * @package App\Domain\User
+ * @package App\Infrastructure\Model
  */
-class User implements JsonSerializable
+class User extends Model
 {
     /**
-     * @var int|null
+     * @var string
      */
-    private $id;
+    protected $table = TableName::TABLE_NAME_USER;
 
     /**
      * @var string
      */
-    private $username;
+    public $firstName;
 
     /**
      * @var string
      */
-    private $firstName;
+    public $lastName;
 
     /**
      * @var string
      */
-    private $lastName;
+    public $email;
 
     /**
-     * @param int|null  $id
-     * @param string    $username
-     * @param string    $firstName
-     * @param string    $lastName
+     * @var array
      */
-    public function __construct(?int $id, string $username, string $firstName, string $lastName)
+    protected $fillable = [
+        'firstName',
+        'lastName',
+        'email',
+        'password',
+    ];
+
+    /**
+     * @param string $password
+     * @return $this
+     */
+    public function setPassword(string $password): self
     {
-        $this->id = $id;
-        $this->username = strtolower($username);
-        $this->firstName = ucfirst($firstName);
-        $this->lastName = ucfirst($lastName);
+        $this->update([
+            'password' => password_hash($password, PASSWORD_DEFAULT)
+        ]);
+
+        return $this;
     }
 
     /**
-     * @return int|null
+     * @param string $firstName
+     * @return $this
      */
-    public function getId(): ?int
+    public function setFirstName(string $firstName): self
     {
-        return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUsername(): string
-    {
-        return $this->username;
+        $this->firstName = trim($firstName);
     }
 
     /**
@@ -70,6 +72,15 @@ class User implements JsonSerializable
     }
 
     /**
+     * @param $lastName
+     * @return $this
+     */
+    public function setLastName($lastName): self
+    {
+        $this->lastName = trim($lastName);
+    }
+
+    /**
      * @return string
      */
     public function getLastName(): string
@@ -78,15 +89,38 @@ class User implements JsonSerializable
     }
 
     /**
+     * @param $email
+     * @return $this
+     */
+    public function setEmail($email): self
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return "$this->firstName $this->lastName";
+    }
+
+    /**
      * @return array
      */
-    public function jsonSerialize()
+    public function getEmailVariables(): array
     {
         return [
-            'id' => $this->id,
-            'username' => $this->username,
-            'firstName' => $this->firstName,
-            'lastName' => $this->lastName,
+            'full_Name' => $this->getFullName(),
+            'email' => $this->getEmail(),
         ];
     }
 }
