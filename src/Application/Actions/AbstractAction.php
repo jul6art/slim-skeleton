@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Application\Actions;
 
-use App\Application\Twig\Extension\DumpExtension;
+use App\Application\Services\Traits\DumperTrait;
 use App\Domain\DomainException\DomainRecordNotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -13,11 +13,13 @@ use Slim\Exception\HttpNotFoundException;
 use Slim\Views\Twig;
 
 /**
- * Class Action
+ * Class AbstractAction
  * @package App\Application\Actions
  */
-abstract class Action
+abstract class AbstractAction
 {
+    use DumperTrait;
+
     /**
      * @var LoggerInterface
      */
@@ -44,7 +46,7 @@ abstract class Action
     protected $twig;
 
     /**
-     * Action constructor.
+     * AbstractAction constructor.
      * @param LoggerInterface $logger
      * @param Twig $twig
      */
@@ -130,23 +132,5 @@ abstract class Action
         $json = json_encode($payload, JSON_PRETTY_PRINT);
         $this->response->getBody()->write($json);
         return $this->response->withHeader('Content-Type', 'application/json');
-    }
-
-    /**
-     * @param $data
-     */
-    protected function dump($data): void
-    {
-        (new DumpExtension())->dump($data);
-    }
-
-    /**
-     * @param $data
-     */
-    protected function dd($data): void
-    {
-        (new DumpExtension())->dump($data);
-
-        die;
     }
 }

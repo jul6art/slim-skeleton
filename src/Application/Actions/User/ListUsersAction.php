@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Application\Actions\User;
 
 use App\Domain\User\UserRepository;
-use App\Infrastructure\Persistence\DatabaseInterface;
+use App\Infrastructure\Persistence\Interfaces\DatabaseInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
@@ -13,7 +13,7 @@ use Slim\Views\Twig;
  * Class ListUsersAction
  * @package App\Application\Actions\User
  */
-class ListUsersAction extends UserAction
+class ListUsersAction extends UserAbstractAction
 {
     /**
      * @var DatabaseInterface

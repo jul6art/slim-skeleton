@@ -35,6 +35,16 @@ Includes
 Commands
 --------
 
+Available commands
+
+```console
+$ composer cli skeleton:database:create  #launch all Illuminate calls located in src/Infrastructure/Migrations
+```
+
+```console
+$ composer cli skeleton:database:drop    #drop all tables listed by Illuminate
+```
+
 Commands must be placed in **src/Application/Command** directory and implements **src/Application/Command/CommandInterface**
 
 ```php
@@ -42,47 +52,35 @@ Commands must be placed in **src/Application/Command** directory and implements 
 
 namespace App\Application\Command;
 
-use Psr\Container\ContainerInterface;
 use RuntimeException;
 
 /**
  * Class SampleCommand
  * @package App\Application\Command
  */
-class SampleCommand implements CommandInterface
+class SampleCommand extends AbstractCommand
 {
     /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    /**
-     * SampleCommand constructor.
-     * @param ContainerInterface $container
-     */
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
-
-    /**
      * @param $args
-     * @return mixed
+     * @return int
      */
-    public function command($args)
+    public function command($args): int
     {
+        $this->info('Creating sample');
+
         // Access items in container
         $settings = $this->container->get('settings');
 
         // Throw if no arguments provided
         if (empty($args)) {
-            throw new RuntimeException("No arguments passed to command");
+            throw new RuntimeException("ERROR! No arguments passed to command");
         }
 
-        $firstArg = $args[0];
+        $this->write("Argument 0: {$args[0]}");
 
-        // Output the first argument
-        return $firstArg;
+        $this->success('Sample successfully created');
+
+        return 0;
     }
 }
 ```

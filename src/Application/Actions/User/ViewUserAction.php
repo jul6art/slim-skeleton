@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface as Response;
  * Class ViewUserAction
  * @package App\Application\Actions\User
  */
-class ViewUserAction extends UserAction
+class ViewUserAction extends UserAbstractAction
 {
     /**
      * {@inheritdoc}

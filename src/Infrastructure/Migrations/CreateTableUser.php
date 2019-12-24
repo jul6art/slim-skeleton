@@ -10,7 +10,7 @@ use Illuminate\Database\Schema\Blueprint;
  */
 class CreateTableUser extends AbstractMigration
 {
-    public function up()
+    public function up(): void
     {
         $this->schema->create('user', function (Blueprint $table) {
             // Auto-increment id
@@ -24,7 +24,7 @@ class CreateTableUser extends AbstractMigration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         $this->schema->drop('user');
     }

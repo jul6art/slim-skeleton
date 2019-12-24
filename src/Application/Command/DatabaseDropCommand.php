@@ -2,7 +2,7 @@
 
 namespace App\Application\Command;
 
-use App\Infrastructure\Persistence\DatabaseInterface;
+use App\Infrastructure\Persistence\Interfaces\DatabaseInterface;
 use Psr\Container\ContainerInterface;
 use RuntimeException;
 
@@ -10,17 +10,12 @@ use RuntimeException;
  * Class DatabaseDropCommand
  * @package App\Application\Command
  */
-class DatabaseDropCommand implements CommandInterface
+class DatabaseDropCommand extends AbstractCommand
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
-
     /**
      * @var DatabaseInterface
      */
-    private $database;
+    protected $database;
 
     /**
      * DatabaseDropCommand constructor.
@@ -28,27 +23,31 @@ class DatabaseDropCommand implements CommandInterface
      */
     public function __construct(ContainerInterface $container)
     {
-        $this->container = $container;
+        parent::__construct($container);
         $this->database = $this->container->get(DatabaseInterface::class);
     }
 
     /**
      * @param $args
-     * @return mixed
+     * @return int
      */
-    public function command($args)
+    public function command($args): int
     {
+        $this->info('Dropping database');
+
         if (!empty($args)) {
             throw new RuntimeException("ERROR! Command takes no arguments");
         }
 
-        $db = $this->database->getCapsule();
-        $tables = $db::select('SHOW TABLES');
-        foreach($tables as $table){
-            $db->getConnection()->getSchemaBuilder()->drop($table->Tables_in_slim_skeleton);
-            echo "Table {$table->Tables_in_slim_skeleton} deleted." . PHP_EOL;
+        $capsule = $this->database->getCapsule();
+
+        foreach($capsule::select('SHOW TABLES') as $table){
+            $capsule->getConnection()->getSchemaBuilder()->drop($table->Tables_in_slim_skeleton);
+            $this->write("Table {$table->Tables_in_slim_skeleton} deleted.");
         }
 
-        return 'SUCCESS! Command successfully launched!';
+        $this->success('Database successfully dropped!');
+
+        return 0;
     }
 }

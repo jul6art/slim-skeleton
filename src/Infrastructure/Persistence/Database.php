@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Persistence;
 
+use App\Infrastructure\Persistence\Interfaces\DatabaseInterface;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 /**

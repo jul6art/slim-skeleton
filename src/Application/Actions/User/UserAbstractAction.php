@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Application\Actions\User;
 
-use App\Application\Actions\Action;
+use App\Application\Actions\AbstractAction;
 use App\Domain\User\UserRepository;
 use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
 
 /**
- * Class UserAction
+ * Class UserAbstractAction
  * @package App\Application\Actions\User
  */
-abstract class UserAction extends Action
+abstract class UserAbstractAction extends AbstractAction
 {
     /**
      * @var UserRepository
@@ -20,7 +20,7 @@ abstract class UserAction extends Action
     protected $userRepository;
 
     /**
-     * UserAction constructor.
+     * UserAbstractAction constructor.
      * @param LoggerInterface $logger
      * @param Twig $twig
      * @param UserRepository $userRepository

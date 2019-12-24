@@ -3,7 +3,7 @@
 namespace App\Infrastructure\Migrations;
 
 use App\Infrastructure\Migrations\Interfaces\MigrationInterface;
-use App\Infrastructure\Persistence\DatabaseInterface;
+use App\Infrastructure\Persistence\Interfaces\DatabaseInterface;
 use Illuminate\Database\Schema\Builder;
 
 /**

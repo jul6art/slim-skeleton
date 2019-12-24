@@ -3,11 +3,11 @@
 namespace App\Infrastructure\Migrations\Interfaces;
 
 /**
- * Interface MigrationInterface
+ * Interfaces MigrationInterface
  * @package App\Infrastructure\Migrations\Interfaces
  */
 interface MigrationInterface
 {
-    public function up();
-    public function down();
+    public function up(): void;
+    public function down(): void;
 }

@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use App\Infrastructure\Persistence\Database;
-use App\Infrastructure\Persistence\DatabaseInterface;
+use App\Infrastructure\Persistence\Interfaces\DatabaseInterface;
 use DI\ContainerBuilder;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;

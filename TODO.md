@@ -2,7 +2,6 @@ https://colorlib.com/preview/theme/martin/index.html#
 
 - database eloquent
     https://github.com/illuminate/database
-    migrations
     fixtures
 - users 
     auth
@@ -16,6 +15,7 @@ https://colorlib.com/preview/theme/martin/index.html#
 - csrf
 - swift mailer
 - abstract crud et crud users
+    form voir validation/assert via respect
     datatables simples non ajax (+ export etc)
     theme backoffice minimaliste 
     theme email

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Infrastructure\Persistence;
+namespace App\Infrastructure\Persistence\Interfaces;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 /**
- * Interface DatabaseInterface
+ * Interfaces DatabaseInterface
  * @package App\Infrastructure\Persistence
  */
 interface DatabaseInterface
@@ -17,7 +17,7 @@ interface DatabaseInterface
 
     /**
      * @param Capsule $capsule
-     * @return Database
+     * @return DatabaseInterface
      */
     public function setCapsule(Capsule $capsule): DatabaseInterface;
 

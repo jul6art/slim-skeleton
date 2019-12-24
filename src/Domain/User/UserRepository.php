@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Domain\User;
 
 /**
- * Interface UserRepository
+ * Interfaces UserRepository
  * @package App\Domain\User
  */
 interface UserRepository

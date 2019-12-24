@@ -2,26 +2,23 @@
 
 namespace App\Application\Command;
 
-use App\Infrastructure\Persistence\DatabaseInterface;
+use App\Infrastructure\Persistence\Interfaces\DatabaseInterface;
 use Nette\Utils\Finder;
 use Psr\Container\ContainerInterface;
+use ReflectionClass;
+use ReflectionException;
 use RuntimeException;
 
 /**
  * Class DatabaseCreateCommand
  * @package App\Application\Command
  */
-class DatabaseCreateCommand implements CommandInterface
+class DatabaseCreateCommand extends AbstractCommand
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
-
     /**
      * @var DatabaseInterface
      */
-    private $database;
+    protected $database;
 
     /**
      * DatabaseDropCommand constructor.
@@ -29,16 +26,19 @@ class DatabaseCreateCommand implements CommandInterface
      */
     public function __construct(ContainerInterface $container)
     {
-        $this->container = $container;
+        parent::__construct($container);
         $this->database = $this->container->get(DatabaseInterface::class);
     }
 
     /**
      * @param $args
-     * @return mixed
+     * @return int
+     * @throws ReflectionException
      */
-    public function command($args)
+    public function command($args): int
     {
+        $this->info('Creating database');
+
         if (!empty($args)) {
             throw new RuntimeException("ERROR! Command takes no arguments");
         }
@@ -46,14 +46,23 @@ class DatabaseCreateCommand implements CommandInterface
         $path = sprintf('%ssrc/Infrastructure/Migrations/', $this->container->get('settings')['project_dir']);
         foreach (Finder::findFiles('*.php')->in($path) as $key => $file) {
             if ($file->getFilename() !== 'AbstractMigration.php') {
-                [$filename, $extension] = explode('.', $file->getFilename());
-                $class = "App\\Infrastructure\\Migrations\\$filename";
+                $filename = explode('.', $file->getFilename())[0];
+                $class = "App\Infrastructure\Migrations\\$filename";
+                $migrationClass = new ReflectionClass($class);
 
-                $migration = new $class($this->container->get(DatabaseInterface::class));
+                if (!$migrationClass->hasMethod('up')) {
+                    throw new RuntimeException(sprintf('Migration %s does not have a up() method', $migrationClass));
+                }
+
+                $migration = $migrationClass->newInstanceArgs([$this->database]);
                 $migration->up();
+
+                $this->write("Migration $filename executed.");
             }
         }
 
-        return 'SUCCESS! Command successfully launched!';
+        $this->success('Database successfully created!');
+
+        return 0;
     }
 }
