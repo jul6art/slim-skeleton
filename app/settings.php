@@ -1,9 +1,10 @@
 <?php
 declare(strict_types=1);
 
-use App\Application\Command\DatabaseCreateCommand;
 use App\Application\Command\DatabaseDropCommand;
+use App\Application\Command\FixtureLoadCommand;
 use App\Application\Command\SampleCommand;
+use App\Infrastructure\Fixtures\UserFixtures;
 use DI\ContainerBuilder;
 use Monolog\Logger;
 
@@ -11,6 +12,7 @@ return function (ContainerBuilder $containerBuilder) {
     // Global Settings Object
     $containerBuilder->addDefinitions([
         'settings' => [
+            'default_locale' => 'en',
             'project_dir' => __DIR__ . '/../',
             'displayErrorDetails' => true, // Should be set to false in production
             'logger' => [
@@ -28,7 +30,11 @@ return function (ContainerBuilder $containerBuilder) {
         ],
         'commands' => [
             'skeleton:database:drop' => DatabaseDropCommand::class,
+            'skeleton:fixtures:load' => FixtureLoadCommand::class,
             'skeleton:sample' => SampleCommand::class,
+        ],
+        'fixtures' => [
+            UserFixtures::class,
         ],
     ]);
 };

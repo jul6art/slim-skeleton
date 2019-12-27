@@ -1,9 +1,6 @@
 https://colorlib.com/preview/theme/martin/index.html#
 
-- database eloquent
-    https://github.com/illuminate/database
-    fixtures
-- cache
+- translations yml
 - users 
     auth
         https://github.com/HavenShen/slim-born/blob/master/app/Models/User.php
@@ -14,14 +11,15 @@ https://colorlib.com/preview/theme/martin/index.html#
         utiliser routecontext pour appliquer automatiquement le bon voter
             http://www.slimframework.com/docs/v4/cookbook/retrieving-current-route.html
 - csrf
-- pages d erreur
 - swift mailer
+- pages d erreur
 - abstract crud et crud users
     form voir validation/assert via respect
     datatables simples non ajax (+ export etc)
     theme backoffice minimaliste 
     theme email
 
+- cache
 - forker pour devinthehood
     + theme
     + déployer

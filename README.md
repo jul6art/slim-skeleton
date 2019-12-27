@@ -42,26 +42,36 @@ Composer
 ```console
 $ composer install --no-suggest
 ```
+
 Yarn
 
 ```console
 yarn install
 ```
+
 Webpack
 
 ```console
 npx webpack --mode=development
 ```
+
 Drop database
 
 ```console
 $ composer cli skeleton:database:drop
 ```
+
 Migrations (located in **src/Infrastructure/Migrations** directory)
 
 ```console
-$ vendor/bin/phinx create MyFirstMigration -c app/phinx.php   ## generate a migrations
+$ vendor/bin/phinx create MyFirstMigration -c app/phinx.php   ## generate a migration
 $ vendor/bin/phinx migrate -c app/phinx.php                   ## migrate
+```
+
+Fixtures (located in **src/Infrastructure/Fixtures** directory and declare in **settings.php** in fixtures section)
+
+```console
+$ composer cli skeleton:fixtures:load
 ```
 
 Commands must be placed in **src/Application/Command** directory and implements **src/Application/Command/CommandInterface**
