@@ -74,7 +74,7 @@ Fixtures (located in **src/Infrastructure/Fixtures** directory and declare in **
 $ composer cli skeleton:fixtures:load
 ```
 
-Commands must be placed in **src/Application/Command** directory and implements **src/Application/Command/CommandInterface**
+Commands must be placed in **src/Application/Command** directory and implement **src/Application/Command/CommandInterface**
 
 ```php
 <?php
