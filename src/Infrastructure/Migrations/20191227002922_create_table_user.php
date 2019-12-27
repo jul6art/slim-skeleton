@@ -1,14 +1,9 @@
 <?php
 
-namespace App\Infrastructure\Migrations;
-
 use App\Domain\Constants\TableName;
+use App\Infrastructure\Persistence\AbstractMigration;
 use Illuminate\Database\Schema\Blueprint;
 
-/**
- * Class CreateTableUser
- * @package App\Infrastructure\Migrations
- */
 class CreateTableUser extends AbstractMigration
 {
     public function up(): void
@@ -27,6 +22,7 @@ class CreateTableUser extends AbstractMigration
 
     public function down(): void
     {
+
         $this->schema->drop('user');
     }
 }

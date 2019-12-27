@@ -4,6 +4,7 @@ namespace App\Infrastructure\Persistence;
 
 use App\Infrastructure\Persistence\Interfaces\DatabaseInterface;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Database\Schema\Builder as Schema;
 
 /**
  * Class Database
@@ -14,7 +15,12 @@ class Database implements DatabaseInterface
     /**
      * @var Capsule
      */
-    private $capsule;
+    public $capsule;
+
+    /**
+     * @var Schema
+     */
+    public $schema;
 
     public function __construct()
     {
@@ -36,6 +42,24 @@ class Database implements DatabaseInterface
     public function setCapsule(Capsule $capsule): DatabaseInterface
     {
         $this->capsule = $capsule;
+        return $this;
+    }
+
+    /**
+     * @return Schema
+     */
+    public function getSchema(): Schema
+    {
+        return $this->schema;
+    }
+
+    /**
+     * @param Schema $schema
+     * @return Database
+     */
+    public function setSchema(Schema $schema): DatabaseInterface
+    {
+        $this->schema = $schema;
         return $this;
     }
 
@@ -61,5 +85,6 @@ class Database implements DatabaseInterface
         $capsule->bootEloquent();
 
         $this->setCapsule($capsule);
+        $this->setSchema($capsule->schema());
     }
 }

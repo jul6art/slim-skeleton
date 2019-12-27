@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Migrations\Interfaces;
+namespace App\Infrastructure\Persistence\Interfaces;
 
 /**
  * Interfaces MigrationInterface

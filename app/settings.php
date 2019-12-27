@@ -27,7 +27,6 @@ return function (ContainerBuilder $containerBuilder) {
             ],
         ],
         'commands' => [
-            'skeleton:database:create' => DatabaseCreateCommand::class,
             'skeleton:database:drop' => DatabaseDropCommand::class,
             'skeleton:sample' => SampleCommand::class,
         ],

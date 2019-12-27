@@ -35,14 +35,33 @@ Includes
 Commands
 --------
 
-Available commands
+Available commands (see **hook_local.sh** file)
+
+Composer
 
 ```console
-$ composer cli skeleton:database:create  #launch all Illuminate calls located in src/Infrastructure/Migrations
+$ composer install --no-suggest
 ```
+Yarn
 
 ```console
-$ composer cli skeleton:database:drop    #drop all tables listed by Illuminate
+yarn install
+```
+Webpack
+
+```console
+npx webpack --mode=development
+```
+Drop database
+
+```console
+$ composer cli skeleton:database:drop
+```
+Migrations (located in **src/Infrastructure/Migrations** directory)
+
+```console
+$ vendor/bin/phinx create MyFirstMigration -c app/phinx.php   ## generate a migrations
+$ vendor/bin/phinx migrate -c app/phinx.php                   ## migrate
 ```
 
 Commands must be placed in **src/Application/Command** directory and implements **src/Application/Command/CommandInterface**
