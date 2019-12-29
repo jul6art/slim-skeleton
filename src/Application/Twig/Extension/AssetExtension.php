@@ -2,6 +2,7 @@
 
 namespace App\Application\Twig\Extension;
 
+use Psr\Container\ContainerInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -10,6 +11,20 @@ use Twig\TwigFunction;
  * @package App\Application\Twig\Extension
  */
 class AssetExtension extends AbstractExtension {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
+     * AssetExtension constructor.
+     * @param ContainerInterface $container
+     */
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
     /**
      * @return array|TwigFunction[]
      */
