@@ -13,6 +13,10 @@ return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
         'settings' => [
             'default_locale' => 'en',
+            'available_locales' => [
+                'en',
+                'fr',
+            ],
             'project_dir' => __DIR__ . '/../',
             'translations_dir' => __DIR__ . '/../translations/',
             'displayErrorDetails' => true, // Should be set to false in production

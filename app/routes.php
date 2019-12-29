@@ -11,7 +11,7 @@ use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 return function (App $app) {
     $app->get('/', HomeAction::class);
 
-    $app->group('/users', function (Group $group) {
+    $app->group('/{locale}/users', function (Group $group) {
         $group->get('', ListAction::class);
         $group->get('/{id}', ViewAction::class);
     });
