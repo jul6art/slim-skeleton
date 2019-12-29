@@ -24,7 +24,8 @@ class AssetExtension extends AbstractExtension {
      * @param string $path
      * @return string
      */
-    public function asset(string $path) : string {
+    public function asset(string $path) : string
+    {
         return sprintf(
             '%s%s%s%s',
             DIRECTORY_SEPARATOR,

@@ -29,7 +29,8 @@ Includes
 * **<a href="https://github.com/slimphp/Twig-View" target="_blank">twig</a>**
 * **<a href="https://github.com/nette/finder" target="_blank">finder</a>**
 * **<a href="https://github.com/fullpipe/twig-webpack-extension" target="_blank">webpack</a>**
-* **<a href="https://github.com/illuminate/database" target="_blank">illuminate</a>**
+* **<a href="https://github.com/illuminate/database" target="_blank">illuminate database</a>**
+* **<a href="https://github.com/illuminate/translation" target="_blank">illuminate translation</a>**
 * **swiftmailer**
 
 Commands

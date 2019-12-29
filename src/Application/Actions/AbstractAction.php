@@ -5,6 +5,7 @@ namespace App\Application\Actions;
 
 use App\Application\Services\Traits\DumperTrait;
 use App\Domain\DomainException\DomainRecordNotFoundException;
+use Illuminate\Contracts\Translation\Translator;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Log\LoggerInterface;
@@ -46,14 +47,21 @@ abstract class AbstractAction
     protected $twig;
 
     /**
+     * @var Translator
+     */
+    protected $translator;
+
+    /**
      * AbstractAction constructor.
      * @param LoggerInterface $logger
      * @param Twig $twig
+     * @param Translator $translator
      */
-    public function __construct(LoggerInterface $logger, Twig $twig)
+    public function __construct(LoggerInterface $logger, Twig $twig, Translator $translator)
     {
         $this->logger = $logger;
         $this->twig = $twig;
+        $this->translator = $translator;
     }
 
     /**

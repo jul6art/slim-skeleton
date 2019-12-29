@@ -28,6 +28,7 @@
         "fullpipe/twig-webpack-extension": "^2.0",
         "fzaninotto/faker": "^1.9",
         "illuminate/database": "^6.8",
+        "illuminate/translation": "^6.8",
         "monolog/monolog": "^1.24",
         "nette/finder": "^2.5",
         "php-di/php-di": "^6.0",

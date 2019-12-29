@@ -6,6 +6,7 @@ namespace App\Application\Actions\User;
 use DI\NotFoundException;
 use Exception;
 use Psr\Http\Message\ResponseInterface as Response;
+use Slim\Exception\HttpBadRequestException;
 
 /**
  * Class ViewAction
@@ -14,8 +15,9 @@ use Psr\Http\Message\ResponseInterface as Response;
 class ViewAction extends UserAbstractAction
 {
     /**
-     * {@inheritdoc}
+     * @return Response
      * @throws NotFoundException
+     * @throws HttpBadRequestException
      * @throws Exception
      */
     protected function action(): Response

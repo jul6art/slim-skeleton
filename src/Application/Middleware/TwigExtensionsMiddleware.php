@@ -4,7 +4,9 @@ namespace App\Application\Middleware;
 
 use App\Application\Twig\Extension\AssetExtension;
 use App\Application\Twig\Extension\DumpExtension;
+use App\Application\Twig\Extension\TranslatorExtension;
 use Fullpipe\TwigWebpackExtension\WebpackExtension;
+use Illuminate\Contracts\Translation\Translator;
 use Slim\Views\Twig;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -23,12 +25,19 @@ class TwigExtensionsMiddleware implements Middleware
     private $twig;
 
     /**
+     * @var Translator
+     */
+    private $translator;
+
+    /**
      * TwigExtensionsMiddleware constructor.
      * @param Twig $twig
+     * @param Translator $translator
      */
-    public function __construct(Twig $twig)
+    public function __construct(Twig $twig, Translator $translator)
     {
         $this->twig   = $twig;
+        $this->translator = $translator;
     }
 
     /**
@@ -36,6 +45,7 @@ class TwigExtensionsMiddleware implements Middleware
      */
     public function process(Request $request, RequestHandler $handler): Response
     {
+        $this->twig->addExtension(new TranslatorExtension($this->translator));
         $this->twig->addExtension(new DumpExtension());
         $this->twig->addExtension(new AssetExtension());
         $this->twig->addExtension(new WebpackExtension(

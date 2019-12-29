@@ -2,6 +2,9 @@
 
 {% block content %}
     {% for user in users %}
+{#        <h1>{{ 'messages.greet'|trans({'name': 'twigy'}, 'fr') }}</h1>#}
+{#        <h1>{{ 'messages.greet'|trans({'name': 'twigy'}) }}</h1>#}
+
         {{ dump(user) }}
     {% endfor %}
 {% endblock content %}

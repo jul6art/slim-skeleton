@@ -14,6 +14,7 @@ return function (ContainerBuilder $containerBuilder) {
         'settings' => [
             'default_locale' => 'en',
             'project_dir' => __DIR__ . '/../',
+            'translations_dir' => __DIR__ . '/../translations/',
             'displayErrorDetails' => true, // Should be set to false in production
             'logger' => [
                 'name' => 'slim-skeleton',
