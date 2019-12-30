@@ -1,13 +1,16 @@
 <?php
 
-
 namespace App\Application\Services;
 
 use App\Application\Services\Interfaces\AuthInterface;
 use App\Domain\Repository\UserRepository;
-use App\Domain\User\User;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Log\LoggerInterface;
+use Slim\Routing\RouteContext;
+use Slim\Views\Twig;
 
 /**
  * Class Auth
@@ -19,6 +22,7 @@ class Auth implements AuthInterface
      * @var UserRepository
      */
     private $userRepository;
+
     /**
      * @var LoggerInterface
      */
@@ -65,10 +69,11 @@ class Auth implements AuthInterface
      * @param string $email
      * @param string $password
      * @return bool
+     * @throws Exception
      */
     public function attempt(string $email, string $password): bool
     {
-        $user = User::where('email', $email)->first();
+        $user = $this->userRepository->findBy(['email' => $email])->first();
 
         if (null === $user) {
             return false;
@@ -85,5 +90,25 @@ class Auth implements AuthInterface
     public function logout(): void
     {
         unset($_SESSION['user']);
+    }
+
+    /**
+     * @param Request $request
+     * @param ResponseInterface $response
+     * @param Twig $twig
+     * @return ResponseInterface
+     */
+    public function getRedirectUrl(Request $request, ResponseInterface $response, Twig $twig): ResponseInterface
+    {
+        $routeContext = RouteContext::fromRequest($request);
+
+        return $response
+            ->withHeader(
+                'Location',
+                $routeContext->getRouteParser()->relativeUrlFor('app_login', [
+                    'locale'=> $twig->getEnvironment()->getGlobals()['app']['locale'],
+                ])
+            )
+            ->withStatus(302);
     }
 }

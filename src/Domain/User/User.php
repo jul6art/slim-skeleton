@@ -112,15 +112,4 @@ class User extends Model
     {
         return "$this->firstName $this->lastName";
     }
-
-    /**
-     * @return array
-     */
-    public function getEmailVariables(): array
-    {
-        return [
-            'full_Name' => $this->getFullName(),
-            'email' => $this->getEmail(),
-        ];
-    }
 }

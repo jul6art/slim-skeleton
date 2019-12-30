@@ -1,18 +1,14 @@
 https://colorlib.com/preview/theme/martin/index.html#
 
 - users 
-    auth
-        https://github.com/HavenShen/slim-born/blob/master/app/Models/User.php
-        https://discourse.slimframework.com/t/slim-framework-3-skeleton-application-has-authentication-mvc-construction/2088
-    login
-        https://github.com/jeremykendall/slim-auth
+    register and reset password
+        + swift mailer (voir vidéo Grafikart)
+        + csrf
+        + respect validation and unique email assert
+        + revoir gestion forms et tester injection
     roles + annotations granted ou voter (+ abstractcontroller gettoken isgranted denyacces ...)
-- csrf
-    ?voir vidéo grafikart
-- swift mailer
 - pages d erreur
 - abstract crud et crud users
-    form voir validation/assert via respect
     datatables simples non ajax (+ export etc)
     theme backoffice minimaliste 
     theme email
@@ -43,5 +39,5 @@ https://madsparrow.me/emily/index.html
 https://www.mockplus.com/blog/post/css-animation-examples
 
 https://github.com/HavenShen/slim-born/blob/master/app/Models/User.php
-
+https://github.com/jeremykendall/slim-auth
 https://discourse.slimframework.com/t/slim-framework-3-skeleton-application-has-authentication-mvc-construction/2088

@@ -2,6 +2,7 @@
 
 namespace App\Application\Middleware;
 
+use App\Application\Services\Interfaces\AuthInterface;
 use App\Application\Twig\Extension\PathExtension;
 use App\Application\Twig\Extension\DumpExtension;
 use App\Application\Twig\Extension\TranslatorExtension;
@@ -53,7 +54,9 @@ class TwigExtensionsMiddleware implements Middleware
 
         // @TODO make usage of tokenStorageInterface
         $twigApp = $this->twig->getEnvironment()->getGlobals()['app'] ?? [];
-        $this->twig->getEnvironment()->addGlobal('app', array_replace($twigApp, ['user' => 'toto']));
+        $this->twig->getEnvironment()->addGlobal('app', array_replace($twigApp, [
+            'user' => $this->container->get(AuthInterface::class)->user(),
+        ]));
 
         $this->twig->addExtension(new TwigMessages(new Messages()));
         $this->twig->addExtension(new TranslatorExtension($this->container->get(Translator::class)));

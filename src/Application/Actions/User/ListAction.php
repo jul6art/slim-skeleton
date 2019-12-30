@@ -23,8 +23,8 @@ class ListAction extends UserAbstractAction
     {
         $this->logger->info("Users list was viewed.");
 
-        $route = RouteContext::fromRequest($request);
-        $this->dump($route->getRoute()->getName());
+        $route = RouteContext::fromRequest($request)->getRoute();
+        $router = RouteContext::fromRequest($request)->getRouteParser();
 
         $this->flash->addMessage('success', "Users list was viewed.");
 

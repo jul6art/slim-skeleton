@@ -1,0 +1,21 @@
+<nav>
+    <ul>
+        <li>
+            {% if app.user is null %}
+                <a href="{{ relativeUrl('app_login', {locale: app.locale}) }}">log in</a>
+            {% else %}
+                <a href="{{ relativeUrl('app_logout', {locale: app.locale}) }}">log out</a>
+            {% endif %}
+        </li>
+        <li>
+            <a href="{{ relativeUrl('app_homepage') }}">homepage</a>
+        </li>
+        <li>
+            <a href="{{ relativeUrl('app_user_list', {locale: 'fr'}) }}">utilisateurs</a>
+            <a href="{{ relativeUrl('app_user_list', {locale: 'en'}) }}">users</a>
+        </li>
+        <li>
+            <a href="{{ relativeUrl('app_user_view', {locale: app.locale, id: 1}) }}">user 1</a>
+        </li>
+    </ul>
+</nav>
