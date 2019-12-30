@@ -34,6 +34,11 @@
             <h1>This is a demo</h1>
             <img src="{{ asset('img/logo.png') }}">
             <h2>Keep calm</h2>
+            {% for level, messages in flash() %}
+                {% for message in messages %}
+                    <p style="background-color: white; color: red;">{{ level|upper ~ '! - ' ~ message }}</p>
+                {% endfor %}
+            {% endfor %}
         </center>
     </section>
     <div>

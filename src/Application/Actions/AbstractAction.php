@@ -11,6 +11,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Log\LoggerInterface;
 use Slim\Exception\HttpBadRequestException;
 use Slim\Exception\HttpNotFoundException;
+use Slim\Flash\Messages;
 use Slim\Views\Twig;
 
 /**
@@ -52,16 +53,23 @@ abstract class AbstractAction
     protected $translator;
 
     /**
+     * @var Messages
+     */
+    protected $flash;
+
+    /**
      * AbstractAction constructor.
      * @param LoggerInterface $logger
      * @param Twig $twig
      * @param Translator $translator
+     * @param Messages $flash
      */
-    public function __construct(LoggerInterface $logger, Twig $twig, Translator $translator)
+    public function __construct(LoggerInterface $logger, Twig $twig, Translator $translator, Messages $flash)
     {
         $this->logger = $logger;
         $this->twig = $twig;
         $this->translator = $translator;
+        $this->flash = $flash;
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Application\Actions\AbstractAction;
 use App\Domain\Repository\UserRepository;
 use Illuminate\Contracts\Translation\Translator;
 use Psr\Log\LoggerInterface;
+use Slim\Flash\Messages;
 use Slim\Views\Twig;
 
 /**
@@ -25,11 +26,12 @@ abstract class UserAbstractAction extends AbstractAction
      * @param LoggerInterface $logger
      * @param Twig $twig
      * @param Translator $translator
+     * @param Messages $flash
      * @param UserRepository $userRepository
      */
-    public function __construct(LoggerInterface $logger, Twig $twig, Translator $translator, UserRepository $userRepository)
+    public function __construct(LoggerInterface $logger, Twig $twig, Translator $translator, Messages $flash, UserRepository $userRepository)
     {
-        parent::__construct($logger, $twig, $translator);
+        parent::__construct($logger, $twig, $translator, $flash);
         $this->userRepository = $userRepository;
     }
 }

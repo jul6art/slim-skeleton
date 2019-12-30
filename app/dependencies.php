@@ -16,6 +16,7 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use Slim\Flash\Messages;
 use Slim\Views\Twig;
 
 return function (ContainerBuilder $containerBuilder) {
@@ -33,6 +34,12 @@ return function (ContainerBuilder $containerBuilder) {
             $logger->pushHandler($handler);
 
             return $logger;
+        },
+    ]);
+
+    $containerBuilder->addDefinitions([
+        Messages::class => function (ContainerInterface $c) {
+            return new Messages();
         },
     ]);
 

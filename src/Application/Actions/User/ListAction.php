@@ -26,6 +26,8 @@ class ListAction extends UserAbstractAction
         $route = RouteContext::fromRequest($request);
         $this->dump($route->getRoute()->getName());
 
+        $this->flash->addMessage('success', "Users list was viewed.");
+
         // $this->dump($this->translator->get('messages.greet', ['name' => 'Johnnyhood'], 'fr'));
         // $this->dd($this->translator->get('messages.greet', ['name' => 'Johnnyhood']));
 
