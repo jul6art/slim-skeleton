@@ -2,7 +2,7 @@
 
 namespace App\Application\Middleware;
 
-use App\Application\Twig\Extension\AssetExtension;
+use App\Application\Twig\Extension\PathExtension;
 use App\Application\Twig\Extension\DumpExtension;
 use App\Application\Twig\Extension\TranslatorExtension;
 use Fullpipe\TwigWebpackExtension\WebpackExtension;
@@ -45,9 +45,13 @@ class TwigExtensionsMiddleware implements Middleware
      */
     public function process(Request $request, RequestHandler $handler): Response
     {
+        // @TODO make usage of tokenStorageInterface
+        $twigApp = $this->twig->getEnvironment()->getGlobals()['app'] ?? [];
+        $this->twig->getEnvironment()->addGlobal('app', array_replace($twigApp, ['user' => 'toto']));
+
         $this->twig->addExtension(new TranslatorExtension($this->container->get(Translator::class)));
         $this->twig->addExtension(new DumpExtension());
-        $this->twig->addExtension(new AssetExtension($this->container));
+        $this->twig->addExtension(new PathExtension($request));
         $this->twig->addExtension(new WebpackExtension(
             __DIR__ . '/../../../public/assets/manifest.json',
             'assets/',

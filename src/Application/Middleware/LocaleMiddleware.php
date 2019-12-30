@@ -10,6 +10,7 @@ use Psr\Http\Server\MiddlewareInterface as Middleware;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Psr\Http\Message\UriInterface;
 use Illuminate\Contracts\Translation\Translator;
+use Slim\Views\Twig;
 
 /**
  * Class LocaleMiddleware
@@ -17,6 +18,11 @@ use Illuminate\Contracts\Translation\Translator;
  */
 class LocaleMiddleware implements Middleware
 {
+    /**
+     * @var Twig
+     */
+    private $twig;
+
     /**
      * Translator
      */
@@ -39,6 +45,7 @@ class LocaleMiddleware implements Middleware
     {
         $settings = $container->get('settings');
 
+        $this->twig = $container->get(Twig::class);
         $this->translator = $container->get(Translator::class);
         $this->availableLocales = $settings['available_locales'];
         $this->defaultLocale = $settings['default_locale'];
@@ -63,9 +70,10 @@ class LocaleMiddleware implements Middleware
         $this->translator->setLocale($locale);
         $this->translator->setFallback($locale);
 
-        $request->withAttribute('session', $session);
+        $twigApp = $this->twig->getEnvironment()->getGlobals()['app'] ?? [];
+        $this->twig->getEnvironment()->addGlobal('app', array_replace($twigApp, ['locale' => $locale]));
 
-        return $handler->handle($request->withAttribute('locale', $locale));
+        return $handler->handle($request->withAttribute('locale', $locale)->withAttribute('session', $session));
     }
 
     /**

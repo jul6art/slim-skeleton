@@ -79,18 +79,19 @@ abstract class AbstractAction
         $this->args = $args;
 
         try {
-            return $this->action();
+            return $this->action($request);
         } catch (DomainRecordNotFoundException $e) {
             throw new HttpNotFoundException($this->request, $e->getMessage());
         }
     }
 
     /**
+     * @param Request $request
      * @return Response
      * @throws DomainRecordNotFoundException
      * @throws HttpBadRequestException
      */
-    abstract protected function action(): Response;
+    abstract protected function action(Request $request): Response;
 
     /**
      * @return array|object

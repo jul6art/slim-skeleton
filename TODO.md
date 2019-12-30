@@ -1,15 +1,12 @@
 https://colorlib.com/preview/theme/martin/index.html#
 
-- translations yml
 - users 
     auth
         https://github.com/HavenShen/slim-born/blob/master/app/Models/User.php
         https://discourse.slimframework.com/t/slim-framework-3-skeleton-application-has-authentication-mvc-construction/2088
     login
         https://github.com/jeremykendall/slim-auth
-    roles + voter (+ abstractcontroller gettoken isgranted denyacces ...) 
-        utiliser routecontext pour appliquer automatiquement le bon voter
-            http://www.slimframework.com/docs/v4/cookbook/retrieving-current-route.html
+    roles + annotations granted ou voter (+ abstractcontroller gettoken isgranted denyacces ...)
 - csrf
 - swift mailer
 - pages d erreur
@@ -24,3 +21,14 @@ https://colorlib.com/preview/theme/martin/index.html#
     + theme
     + déployer
     + migrer tout vsweb (signature email, linkedin, ...)
+    
+sources
+-------
+
+https://github.com/llvdl/Slim-Translations-Example/blob/master/app/config/routes.php
+
+https://colorlib.com/preview/theme/martin/index.html#
+
+https://github.com/HavenShen/slim-born/blob/master/app/Models/User.php
+
+https://discourse.slimframework.com/t/slim-framework-3-skeleton-application-has-authentication-mvc-construction/2088

@@ -6,6 +6,7 @@ namespace App\Application\Actions\User;
 use DI\NotFoundException;
 use Exception;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpBadRequestException;
 
 /**
@@ -15,12 +16,13 @@ use Slim\Exception\HttpBadRequestException;
 class ViewAction extends UserAbstractAction
 {
     /**
+     * @param ServerRequestInterface $request
      * @return Response
-     * @throws NotFoundException
      * @throws HttpBadRequestException
+     * @throws NotFoundException
      * @throws Exception
      */
-    protected function action(): Response
+    protected function action(ServerRequestInterface $request): Response
     {
         $id = (int) $this->resolveArg('id');
         $user = $this->userRepository->find($id);

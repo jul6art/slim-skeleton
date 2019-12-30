@@ -13,6 +13,7 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use Slim\Interfaces\RouteParserInterface;
 use Slim\Views\Twig;
 
 return function (ContainerBuilder $containerBuilder) {

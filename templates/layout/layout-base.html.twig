@@ -13,12 +13,29 @@
     {% endblock stylesheets %}
 </head>
 <body>
-    <center>
-        <h1>This is a demo</h1>
-        <img src="{{ asset('img/logo.png') }}">
-        <h2>Keep calm</h2>
-        <a href="/users">User list</a>
-    </center>
+    <aside style="width: 30%; float: left">
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{ relativeUrl('app_homepage') }}">homepage</a>
+                </li>
+                <li>
+                    <a href="{{ relativeUrl('app_user_list', {locale: 'fr'}) }}">utilisateurs</a>
+                    <a href="{{ relativeUrl('app_user_list', {locale: 'en'}) }}">users</a>
+                </li>
+                <li>
+                    <a href="{{ relativeUrl('app_user_view', {locale: app.locale, id: 1}) }}">user 1</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <section style="width: 70%; float: left">
+        <center>
+            <h1>This is a demo</h1>
+            <img src="{{ asset('img/logo.png') }}">
+            <h2>Keep calm</h2>
+        </center>
+    </section>
     <div>
         {% block content %}
         {% endblock content %}

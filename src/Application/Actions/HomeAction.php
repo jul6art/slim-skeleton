@@ -6,6 +6,7 @@ namespace App\Application\Actions;
 use App\Application\Actions\AbstractAction;
 use App\Domain\User\UserRepository;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
 
@@ -18,7 +19,7 @@ class HomeAction extends AbstractAction
     /**
      * {@inheritdoc}
      */
-    protected function action(): Response
+    protected function action(ServerRequestInterface $request): Response
     {
         return $this->twig->render($this->response, 'default/index.html.twig', [
             'foo' => 'bar'

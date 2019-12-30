@@ -9,11 +9,12 @@ use Slim\Exception\HttpNotFoundException;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
 return function (App $app) {
-    $app->get('/', HomeAction::class);
+    $app->get('/', HomeAction::class)->setName('app_homepage');
+    $app->get('/{locale}/home', HomeAction::class)->setName('app_homepage');
 
     $app->group('/{locale}/users', function (Group $group) {
-        $group->get('', ListAction::class);
-        $group->get('/{id}', ViewAction::class);
+        $group->get('', ListAction::class)->setName('app_user_list');
+        $group->get('/{id}', ViewAction::class)->setName('app_user_view');
     });
 
     /**
