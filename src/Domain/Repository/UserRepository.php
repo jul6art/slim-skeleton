@@ -2,7 +2,7 @@
 
 namespace App\Domain\Repository;
 
-use App\Domain\User\User;
+use App\Domain\Entity\User;
 
 /**
  * Class UserRepository

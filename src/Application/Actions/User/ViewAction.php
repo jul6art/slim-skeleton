@@ -11,7 +11,7 @@ use Slim\Exception\HttpBadRequestException;
 
 /**
  * Class ViewAction
- * @package App\Application\Actions\User
+ * @package App\Application\Actions\Entity
  */
 class ViewAction extends UserAbstractAction
 {
@@ -28,10 +28,10 @@ class ViewAction extends UserAbstractAction
         $user = $this->userRepository->find($id);
 
         if (null == $user) {
-            throw new NotFoundException("User not found.");
+            throw new NotFoundException("Entity not found.");
         }
 
-        $this->logger->info("User of id `{$id}` was viewed.");
+        $this->logger->info("Entity of id `{$id}` was viewed.");
 
         return $this->twig->render($this->response, 'user/view.html.twig', [
             'user' => $user,

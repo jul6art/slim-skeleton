@@ -38,6 +38,6 @@ https://huge-demo.krownthemeswp.com/
 https://madsparrow.me/emily/index.html
 https://www.mockplus.com/blog/post/css-animation-examples
 
-https://github.com/HavenShen/slim-born/blob/master/app/Models/User.php
+https://github.com/HavenShen/slim-born/blob/master/app/Models/Entity.php
 https://github.com/jeremykendall/slim-auth
 https://discourse.slimframework.com/t/slim-framework-3-skeleton-application-has-authentication-mvc-construction/2088

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Tests\Infrastructure\Persistence\User;
 
-use App\Domain\User\User;
-use App\Domain\User\UserNotFoundException;
+use App\Domain\Entity\User;
+use App\Domain\Entity\UserNotFoundException;
 use App\Infrastructure\Persistence\User\InMemoryUserRepository;
 use Tests\TestCase;
 
@@ -29,7 +29,7 @@ class InMemoryUserRepositoryTest extends TestCase
     }
 
     /**
-     * @expectedException \App\Domain\User\UserNotFoundException
+     * @expectedException \App\Domain\Entity\UserNotFoundException
      */
     public function testFindUserOfIdThrowsNotFoundException()
     {

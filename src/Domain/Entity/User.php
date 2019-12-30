@@ -1,12 +1,12 @@
 <?php
 
-Namespace App\Domain\User;
+Namespace App\Domain\Entity;
 
 use App\Domain\Constants\TableName;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class User
+ * Class Entity
  * @package App\Infrastructure\Model
  */
 class User extends Model

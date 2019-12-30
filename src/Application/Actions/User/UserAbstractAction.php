@@ -18,7 +18,7 @@ use Slim\Views\Twig;
 
 /**
  * Class UserAbstractAction
- * @package App\Application\Actions\User
+ * @package App\Application\Actions\Entity
  */
 abstract class UserAbstractAction extends AbstractAction
 {

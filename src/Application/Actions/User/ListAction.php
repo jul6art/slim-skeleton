@@ -10,7 +10,7 @@ use Slim\Routing\RouteContext;
 
 /**
  * Class ListAction
- * @package App\Application\Actions\User
+ * @package App\Application\Actions\Entity
  */
 class ListAction extends UserAbstractAction
 {
