@@ -8,6 +8,7 @@ https://colorlib.com/preview/theme/martin/index.html#
         https://github.com/jeremykendall/slim-auth
     roles + annotations granted ou voter (+ abstractcontroller gettoken isgranted denyacces ...)
 - csrf
+    ?voir vidéo grafikart
 - swift mailer
 - pages d erreur
 - abstract crud et crud users
@@ -18,6 +19,15 @@ https://colorlib.com/preview/theme/martin/index.html#
 
 - cache
 - forker pour devinthehood
+    quelques phrases choc si possible avec un arbe de décision animé
+        mettre compétences en avant
+            symfony
+            flex
+            laravel
+            wordpress
+            prestashop
+            jenkins
+            ....
     + theme
     + déployer
     + migrer tout vsweb (signature email, linkedin, ...)
@@ -28,6 +38,9 @@ sources
 https://github.com/llvdl/Slim-Translations-Example/blob/master/app/config/routes.php
 
 https://colorlib.com/preview/theme/martin/index.html#
+https://huge-demo.krownthemeswp.com/
+https://madsparrow.me/emily/index.html
+https://www.mockplus.com/blog/post/css-animation-examples
 
 https://github.com/HavenShen/slim-born/blob/master/app/Models/User.php
 

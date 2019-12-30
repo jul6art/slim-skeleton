@@ -1,6 +1,9 @@
 <?php
 declare(strict_types=1);
 
+use App\Application\Services\Auth;
+use App\Application\Services\Interfaces\AuthInterface;
+use App\Domain\Repository\UserRepository;
 use App\Infrastructure\Persistence\Database;
 use App\Infrastructure\Persistence\Interfaces\DatabaseInterface;
 use DI\ContainerBuilder;
@@ -13,7 +16,6 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
-use Slim\Interfaces\RouteParserInterface;
 use Slim\Views\Twig;
 
 return function (ContainerBuilder $containerBuilder) {
@@ -31,6 +33,12 @@ return function (ContainerBuilder $containerBuilder) {
             $logger->pushHandler($handler);
 
             return $logger;
+        },
+    ]);
+
+    $containerBuilder->addDefinitions([
+        AuthInterface::class => function (ContainerInterface $c) {
+            return new Auth($c->get(UserRepository::class), $c->get(LoggerInterface::class));
         },
     ]);
 
