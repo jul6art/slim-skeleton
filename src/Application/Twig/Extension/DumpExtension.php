@@ -10,7 +10,8 @@ use Twig\TwigFunction;
  * Class DumpExtension
  * @package App\Application\Twig\Extension
  */
-class DumpExtension extends AbstractExtension {
+class DumpExtension extends AbstractExtension
+{
     use DumperTrait;
 
     /**
@@ -30,5 +31,4 @@ class DumpExtension extends AbstractExtension {
     {
         $this->dump($data);
     }
-
 }

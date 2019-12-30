@@ -41,7 +41,7 @@ class DatabaseDropCommand extends AbstractCommand
 
         $capsule = $this->database->getCapsule();
 
-        foreach($capsule::select('SHOW TABLES') as $table){
+        foreach ($capsule::select('SHOW TABLES') as $table) {
             $capsule->getConnection()->getSchemaBuilder()->drop($table->Tables_in_slim_skeleton);
             $this->write("Table {$table->Tables_in_slim_skeleton} deleted.");
         }

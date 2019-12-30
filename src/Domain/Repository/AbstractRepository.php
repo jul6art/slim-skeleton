@@ -63,7 +63,7 @@ abstract class AbstractRepository implements RepositoryInterface
             $builder->where($key, '=', $value);
         }
 
-         return $builder->get();
+        return $builder->get();
     }
 
     /**

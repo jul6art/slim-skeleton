@@ -61,7 +61,7 @@ class AuthMiddleware implements Middleware
 
         $response = $handler->handle($request);
 
-        if(!$this->auth->check() and !\in_array($routeContext->getRoute()->getName(), [
+        if (!$this->auth->check() and !\in_array($routeContext->getRoute()->getName(), [
             'app_login',
             'app_logout',
             'app_homepage',

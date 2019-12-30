@@ -26,8 +26,8 @@ class Dumper
         highlight_string("<?php\n" . var_export($data, true) . "?>");
         $output = ob_get_clean();
 
-        $output = str_replace( "&lt;?php", '', $output );
-        $output = str_replace( "?&gt;", '', $output );
+        $output = str_replace("&lt;?php", '', $output);
+        $output = str_replace("?&gt;", '', $output);
         $closeTag = '</div>';
 
         echo "$openTag$output$closeTag";

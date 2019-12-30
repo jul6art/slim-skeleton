@@ -75,7 +75,7 @@ class CLIMiddleware implements Middleware
                 }
 
                 if ($commandClass->getConstructor()) {
-                    $task_construct_method = new ReflectionMethod($class,  '__construct');
+                    $task_construct_method = new ReflectionMethod($class, '__construct');
                     $construct_params = $task_construct_method->getParameters();
 
                     if (count($construct_params) == 0) {
@@ -103,7 +103,7 @@ class CLIMiddleware implements Middleware
             $response->getBody()->write('');
 
             return $response;
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             throw $e;
         }
     }

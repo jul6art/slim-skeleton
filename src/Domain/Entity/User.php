@@ -1,6 +1,6 @@
 <?php
 
-Namespace App\Domain\Entity;
+namespace App\Domain\Entity;
 
 use App\Domain\Constants\TableName;
 use Illuminate\Database\Eloquent\Model;
