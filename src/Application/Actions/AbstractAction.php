@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Application\Actions;
 
+use App\Application\Services\Interfaces\AuthInterface;
 use App\Application\Services\Traits\DumperTrait;
 use App\Domain\DomainException\DomainRecordNotFoundException;
 use Illuminate\Contracts\Translation\Translator;
@@ -12,6 +13,8 @@ use Psr\Log\LoggerInterface;
 use Slim\Exception\HttpBadRequestException;
 use Slim\Exception\HttpNotFoundException;
 use Slim\Flash\Messages;
+use Slim\Interfaces\RouteParserInterface;
+use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
 
 /**
@@ -58,18 +61,30 @@ abstract class AbstractAction
     protected $flash;
 
     /**
+     * @var AuthInterface
+     */
+    protected $auth;
+
+    /**
+     * @var RouteParserInterface
+     */
+    protected $router;
+
+    /**
      * AbstractAction constructor.
      * @param LoggerInterface $logger
      * @param Twig $twig
      * @param Translator $translator
      * @param Messages $flash
+     * @param AuthInterface $auth
      */
-    public function __construct(LoggerInterface $logger, Twig $twig, Translator $translator, Messages $flash)
+    public function __construct(LoggerInterface $logger, Twig $twig, Translator $translator, Messages $flash, AuthInterface $auth)
     {
         $this->logger = $logger;
         $this->twig = $twig;
         $this->translator = $translator;
         $this->flash = $flash;
+        $this->auth = $auth;
     }
 
     /**
@@ -85,6 +100,7 @@ abstract class AbstractAction
         $this->request = $request;
         $this->response = $response;
         $this->args = $args;
+        $this->router = RouteContext::fromRequest($request)->getRouteParser();
 
         try {
             return $this->action($request);
@@ -149,5 +165,23 @@ abstract class AbstractAction
         $json = json_encode($payload, JSON_PRETTY_PRINT);
         $this->response->getBody()->write($json);
         return $this->response->withHeader('Content-Type', 'application/json');
+    }
+
+    /**
+     * @param Response $response
+     * @param string $route
+     * @param array $parameters
+     * @return Response
+     */
+    protected function redirectToRoute(Response $response, string $route, array $parameters = []): Response
+    {
+        return $response
+            ->withHeader(
+                'Location',
+                $this->router->relativeUrlFor($route, array_replace($parameters, [
+                    'locale'=> $this->twig->getEnvironment()->getGlobals()['app']['locale'],
+                ]))
+            )
+            ->withStatus(302);
     }
 }

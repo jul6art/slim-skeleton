@@ -2,10 +2,7 @@
 
 namespace App\Application\Twig\Extension;
 
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Slim\App;
-use Slim\Factory\AppFactory;
 use Slim\Interfaces\RouteParserInterface;
 use Slim\Routing\RouteContext;
 use Twig\Extension\AbstractExtension;
@@ -20,7 +17,7 @@ class PathExtension extends AbstractExtension
     /**
      * @var RouteParserInterface
      */
-    private $routerParser;
+    private $router;
 
     /**
      * PathExtension constructor.
@@ -28,7 +25,7 @@ class PathExtension extends AbstractExtension
      */
     public function __construct(ServerRequestInterface $request)
     {
-        $this->routerParser = RouteContext::fromRequest($request)->getRouteParser();
+        $this->router = RouteContext::fromRequest($request)->getRouteParser();
     }
 
     /**
@@ -67,7 +64,7 @@ class PathExtension extends AbstractExtension
      */
     public function fullUrlFor(string $routeName, array $data = [], array $queryParams = []): string
     {
-        return $this->routerParser->fullUrlFor($routeName, $data, $queryParams);
+        return $this->router->fullUrlFor($routeName, $data, $queryParams);
     }
 
     /**
@@ -78,7 +75,7 @@ class PathExtension extends AbstractExtension
      */
     public function relativeUrlFor(string $routeName, array $data = [], array $queryParams = []): string
     {
-        return $this->routerParser->relativeUrlFor($routeName, $data, $queryParams);
+        return $this->router->relativeUrlFor($routeName, $data, $queryParams);
     }
 
     /**
@@ -89,6 +86,6 @@ class PathExtension extends AbstractExtension
      */
     public function urlFor(string $routeName, array $data = [], array $queryParams = []): string
     {
-        return $this->routerParser->urlFor($routeName, $data, $queryParams);
+        return $this->router->urlFor($routeName, $data, $queryParams);
     }
 }

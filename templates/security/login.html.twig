@@ -1,0 +1,9 @@
+{% extends 'layout/layout-base.html.twig' %}
+
+{% block content %}
+    <form method="post" action="{{ url('app_login', {locale: app.locale}) }}">
+        <input type="text" name="email">
+        <input type="text" name="password">
+        <input type="submit">
+    </form>
+{% endblock content %}

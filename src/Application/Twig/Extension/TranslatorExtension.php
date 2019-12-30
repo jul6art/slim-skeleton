@@ -10,7 +10,8 @@ use Twig\TwigFilter;
  * Class TranslatorExtension
  * @package App\Application\Twig\Extension
  */
-class TranslatorExtension extends AbstractExtension {
+class TranslatorExtension extends AbstractExtension
+{
 
     /**
      * @var Translator
@@ -46,5 +47,4 @@ class TranslatorExtension extends AbstractExtension {
     {
         return $this->translator->get($key, $replace, $locale);
     }
-
 }

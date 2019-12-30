@@ -14,31 +14,14 @@
 </head>
 <body>
     <aside style="width: 30%; float: left">
-        <nav>
-            <ul>
-                <li>
-                    <a href="{{ relativeUrl('app_homepage') }}">homepage</a>
-                </li>
-                <li>
-                    <a href="{{ relativeUrl('app_user_list', {locale: 'fr'}) }}">utilisateurs</a>
-                    <a href="{{ relativeUrl('app_user_list', {locale: 'en'}) }}">users</a>
-                </li>
-                <li>
-                    <a href="{{ relativeUrl('app_user_view', {locale: app.locale, id: 1}) }}">user 1</a>
-                </li>
-            </ul>
-        </nav>
+        {% include 'includes/_navbar.html.twig' %}
     </aside>
     <section style="width: 70%; float: left">
         <center>
             <h1>This is a demo</h1>
             <img src="{{ asset('img/logo.png') }}">
             <h2>Keep calm</h2>
-            {% for level, messages in flash() %}
-                {% for message in messages %}
-                    <p style="background-color: white; color: red;">{{ level|upper ~ '! - ' ~ message }}</p>
-                {% endfor %}
-            {% endfor %}
+            {% include 'includes/_flashbag.html.twig' %}
         </center>
     </section>
     <div>
