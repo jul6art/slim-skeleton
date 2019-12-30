@@ -5,10 +5,11 @@ namespace Tests\Application\Actions\User;
 
 use App\Application\Actions\ActionError;
 use App\Application\Actions\ActionPayload;
+use App\Application\Actions\Constants\ActionErrorName;
 use App\Application\Handlers\HttpErrorHandler;
-use App\Domain\User\User;
-use App\Domain\User\UserNotFoundException;
-use App\Domain\User\UserRepository;
+use App\Domain\Entity\User;
+use App\Domain\Entity\UserNotFoundException;
+use App\Domain\Entity\UserRepository;
 use DI\Container;
 use Slim\Middleware\ErrorMiddleware;
 use Tests\TestCase;
@@ -50,7 +51,7 @@ class ViewUserActionTest extends TestCase
         $responseFactory = $app->getResponseFactory();
 
         $errorHandler = new HttpErrorHandler($callableResolver, $responseFactory);
-        $errorMiddleware = new ErrorMiddleware($callableResolver, $responseFactory, true, false ,false);
+        $errorMiddleware = new ErrorMiddleware($callableResolver, $responseFactory, true, false, false);
         $errorMiddleware->setDefaultErrorHandler($errorHandler);
 
         $app->add($errorMiddleware);
@@ -70,7 +71,7 @@ class ViewUserActionTest extends TestCase
         $response = $app->handle($request);
 
         $payload = (string) $response->getBody();
-        $expectedError = new ActionError(ActionError::RESOURCE_NOT_FOUND, 'The user you requested does not exist.');
+        $expectedError = new ActionError(ActionErrorName::ACTION_ERROR_NAME_RESOURCE_NOT_FOUND, 'The user you requested does not exist.');
         $expectedPayload = new ActionPayload(404, null, $expectedError);
         $serializedPayload = json_encode($expectedPayload, JSON_PRETTY_PRINT);
 

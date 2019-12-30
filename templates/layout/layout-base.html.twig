@@ -5,15 +5,25 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dev in the hood</title>
+    <title>{% block title %}Dev in the hood{% endblock title %}</title>
+    <link rel="icon" href="{{ asset('img/favicon.png') }}">
+
+    {% block stylesheets %}
+        {% include 'includes/_stylesheets.html.twig' %}
+    {% endblock stylesheets %}
 </head>
 <body>
-    <center>
-        <h1>This is a demo</h1>
-        <img src="{{ asset('img/logo.png') }}">
-        <h2>Keep calm</h2>
-        <a href="/users">User list</a>
-    </center>
+    <aside style="width: 30%; float: left">
+        {% include 'includes/_navbar.html.twig' %}
+    </aside>
+    <section style="width: 70%; float: left">
+        <center>
+            <h1>This is a demo</h1>
+            <img src="{{ asset('img/logo.png') }}">
+            <h2>Keep calm</h2>
+            {% include 'includes/_flashbag.html.twig' %}
+        </center>
+    </section>
     <div>
         {% block content %}
         {% endblock content %}

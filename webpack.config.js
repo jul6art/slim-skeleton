@@ -9,7 +9,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        'app': './assets/js/app.js'
+        'app': './assets/js/app.js',
     },
     output: {
         path: path.resolve(__dirname, 'public/assets'),
@@ -24,7 +24,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.scss$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader']
             }
         ],

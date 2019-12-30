@@ -5,6 +5,7 @@ namespace App\Application\Handlers;
 
 use App\Application\Actions\ActionError;
 use App\Application\Actions\ActionPayload;
+use App\Application\Actions\Constants\ActionErrorName;
 use Exception;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
@@ -31,7 +32,7 @@ class HttpErrorHandler extends SlimErrorHandler
         $exception = $this->exception;
         $statusCode = 500;
         $error = new ActionError(
-            ActionError::SERVER_ERROR,
+            ActionErrorName::ACTION_ERROR_NAME_SERVER_ERROR,
             'An internal error has occurred while processing your request.'
         );
 
@@ -40,17 +41,17 @@ class HttpErrorHandler extends SlimErrorHandler
             $error->setDescription($exception->getMessage());
 
             if ($exception instanceof HttpNotFoundException) {
-                $error->setType(ActionError::RESOURCE_NOT_FOUND);
+                $error->setType(ActionErrorName::ACTION_ERROR_NAME_RESOURCE_NOT_FOUND);
             } elseif ($exception instanceof HttpMethodNotAllowedException) {
-                $error->setType(ActionError::NOT_ALLOWED);
+                $error->setType(ActionErrorName::ACTION_ERROR_NAME_NOT_ALLOWED);
             } elseif ($exception instanceof HttpUnauthorizedException) {
-                $error->setType(ActionError::UNAUTHENTICATED);
+                $error->setType(ActionErrorName::ACTION_ERROR_NAME_UNAUTHENTICATED);
             } elseif ($exception instanceof HttpForbiddenException) {
-                $error->setType(ActionError::INSUFFICIENT_PRIVILEGES);
+                $error->setType(ActionErrorName::ACTION_ERROR_NAME_INSUFFICIENT_PRIVILEGES);
             } elseif ($exception instanceof HttpBadRequestException) {
-                $error->setType(ActionError::BAD_REQUEST);
+                $error->setType(ActionErrorName::ACTION_ERROR_NAME_BAD_REQUEST);
             } elseif ($exception instanceof HttpNotImplementedException) {
-                $error->setType(ActionError::NOT_IMPLEMENTED);
+                $error->setType(ActionErrorName::ACTION_ERROR_NAME_NOT_IMPLEMENTED);
             }
         }
 

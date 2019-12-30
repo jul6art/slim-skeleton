@@ -2,6 +2,7 @@
 
 namespace App\Application\Middleware;
 
+use App\Application\Command\Traits\CommandLineTrait;
 use Exception;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -19,6 +20,8 @@ use Slim\Psr7\Response;
  */
 class CLIMiddleware implements Middleware
 {
+    use CommandLineTrait;
+
     /*
      * @var ContainerInterface
      */
@@ -39,7 +42,7 @@ class CLIMiddleware implements Middleware
      */
     public function process(Request $request, RequestHandler $handler): ResponseInterface
     {
-        if (PHP_SAPI !== 'cli') {
+        if (\PHP_SAPI !== 'cli') {
             return $handler->handle($request);
         }
 
@@ -72,7 +75,7 @@ class CLIMiddleware implements Middleware
                 }
 
                 if ($commandClass->getConstructor()) {
-                    $task_construct_method = new ReflectionMethod($class,  '__construct');
+                    $task_construct_method = new ReflectionMethod($class, '__construct');
                     $construct_params = $task_construct_method->getParameters();
 
                     if (count($construct_params) == 0) {
@@ -92,13 +95,15 @@ class CLIMiddleware implements Middleware
                     $task = $commandClass->newInstanceWithoutConstructor();
                 }
 
-                $response->getBody()->write($task->command($args));
+                $task->command($args);
             } else {
-                $response->getBody()->write('ERROR - Command not found');
+                $this->error('Command not found');
             }
 
+            $response->getBody()->write('');
+
             return $response;
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             throw $e;
         }
     }

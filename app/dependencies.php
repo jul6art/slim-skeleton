@@ -1,14 +1,22 @@
 <?php
 declare(strict_types=1);
 
+use App\Application\Services\Auth;
+use App\Application\Services\Interfaces\AuthInterface;
+use App\Domain\Repository\UserRepository;
 use App\Infrastructure\Persistence\Database;
-use App\Infrastructure\Persistence\DatabaseInterface;
+use App\Infrastructure\Persistence\Interfaces\DatabaseInterface;
 use DI\ContainerBuilder;
+use Illuminate\Contracts\Translation\Translator as TranslatorInterface;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Translation\FileLoader;
+use Illuminate\Translation\Translator;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use Slim\Flash\Messages;
 use Slim\Views\Twig;
 
 return function (ContainerBuilder $containerBuilder) {
@@ -30,8 +38,28 @@ return function (ContainerBuilder $containerBuilder) {
     ]);
 
     $containerBuilder->addDefinitions([
+        Messages::class => function (ContainerInterface $c) {
+            return new Messages();
+        },
+    ]);
+
+    $containerBuilder->addDefinitions([
+        AuthInterface::class => function (ContainerInterface $c) {
+            return new Auth($c->get(UserRepository::class), $c->get(LoggerInterface::class));
+        },
+    ]);
+
+    $containerBuilder->addDefinitions([
         Twig::class => function (ContainerInterface $c) {
             return new Twig($c->get('settings')['project_dir'] . 'templates', ['cache' => false]);
+        },
+    ]);
+
+    $containerBuilder->addDefinitions([
+        TranslatorInterface::class => function (ContainerInterface $c) {
+            $settings = $c->get('settings');
+            $loader = new FileLoader(new Filesystem(), $settings['translations_dir']);
+            return new Translator($loader, $settings['default_locale']);
         },
     ]);
 

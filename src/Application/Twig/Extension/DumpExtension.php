@@ -2,6 +2,7 @@
 
 namespace App\Application\Twig\Extension;
 
+use App\Application\Services\Traits\DumperTrait;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -9,38 +10,25 @@ use Twig\TwigFunction;
  * Class DumpExtension
  * @package App\Application\Twig\Extension
  */
-class DumpExtension extends AbstractExtension {
+class DumpExtension extends AbstractExtension
+{
+    use DumperTrait;
+
     /**
      * @return array|TwigFunction[]
      */
     public function getFunctions()
     {
         return [
-            new TwigFunction('dump', [$this, 'dump']),
+            new TwigFunction('dump', [$this, 'debug']),
         ];
     }
 
     /**
      * @param $data
      */
-    public function dump($data): void
+    public function debug($data): void
     {
-        $openTag = '<div style="background: #000; padding: 10px 20px;">';
-        ini_set("highlight.default", "#56db3a;  font-weight: bolder");
-        ini_set("highlight.keyword", "#ff8400;  font-weight: bolder");
-        ini_set("highlight.string", "#ffffff; font-weight: lighter; ");
-        ini_set("highlight.comment", "#b729d9; font-weight: lighter; ");
-        ini_set("highlight.html", "#b729d9; font-weight: lighter; ");
-
-        ob_start();
-        highlight_string("<?php\n" . var_export($data, true) . "?>");
-        $output = ob_get_clean();
-
-        $output = str_replace( "&lt;?php", '', $output );
-        $output = str_replace( "?&gt;", '', $output );
-        $closeTag = '</div>';
-
-        echo "$openTag$output$closeTag";
+        $this->dump($data);
     }
-
 }

@@ -25,62 +25,92 @@ Requirements
 Includes
 --------
 
-* **dotenv**
-* **twig**
-* **webpack**
+* **<a href="https://github.com/vlucas/phpdotenv" target="_blank">dotenv</a>**
+* **<a href="https://github.com/slimphp/Twig-View" target="_blank">twig</a>**
+* **<a href="https://github.com/nette/finder" target="_blank">finder</a>**
+* **<a href="https://github.com/fullpipe/twig-webpack-extension" target="_blank">webpack</a>**
+* **<a href="https://github.com/illuminate/database" target="_blank">illuminate database</a>**
+* **<a href="https://github.com/illuminate/translation" target="_blank">illuminate translation</a>**
 * **swiftmailer**
 
 Commands
 --------
 
-Commands must be placed in **src/Application/Command** directory and implements **src/Application/Command/CommandInterface**
+Available commands (see **hook_local.sh** file)
+
+Composer
+
+```console
+$ composer install --no-suggest
+```
+
+Yarn
+
+```console
+yarn install
+```
+
+Webpack
+
+```console
+npx webpack --mode=development
+```
+
+Drop database
+
+```console
+$ composer cli skeleton:database:drop
+```
+
+Migrations (located in **src/Infrastructure/Migrations** directory)
+
+```console
+$ vendor/bin/phinx create MyFirstMigration -c app/phinx.php   ## generate a migration
+$ vendor/bin/phinx migrate -c app/phinx.php                   ## migrate
+```
+
+Fixtures (located in **src/Infrastructure/Fixtures** directory and declare in **settings.php** in fixtures section)
+
+```console
+$ composer cli skeleton:fixtures:load
+```
+
+Commands must be placed in **src/Application/Command** directory and implement **src/Application/Command/CommandInterface**
 
 ```php
 <?php
 
 namespace App\Application\Command;
 
-use Psr\Container\ContainerInterface;
 use RuntimeException;
 
 /**
  * Class SampleCommand
  * @package App\Application\Command
  */
-class SampleCommand implements CommandInterface
+class SampleCommand extends AbstractCommand
 {
     /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    /**
-     * SampleCommand constructor.
-     * @param ContainerInterface $container
-     */
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
-
-    /**
      * @param $args
-     * @return mixed
+     * @return int
      */
-    public function command($args)
+    public function command($args): int
     {
+        $this->info('Creating sample');
+
         // Access items in container
         $settings = $this->container->get('settings');
 
         // Throw if no arguments provided
         if (empty($args)) {
-            throw new RuntimeException("No arguments passed to command");
+            throw new RuntimeException("ERROR! No arguments passed to command");
         }
 
-        $firstArg = $args[0];
+        $this->write("Argument 0: {$args[0]}");
 
-        // Output the first argument
-        return $firstArg;
+        $this->success('Sample successfully created');
+
+        return 0;
     }
 }
 ```

@@ -1,7 +1,12 @@
 {% extends 'layout/layout-base.html.twig' %}
 
 {% block content %}
+    {#        <h1>{{ 'messages.greet'|trans({'name': 'twigy'}, 'fr') }}</h1>#}
+    <h1>{{ 'messages.greet'|trans({'name': 'twigy'}) }}</h1>
+
     {% for user in users %}
-        {{ dump(user) }}
+        <li>
+            {{ user.email }}
+        </li>
     {% endfor %}
 {% endblock content %}
