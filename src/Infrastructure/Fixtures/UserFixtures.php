@@ -20,7 +20,7 @@ class UserFixtures extends AbstractFixture
                 'firstName' => $this->faker->firstName,
                 'lastName' => $this->faker->lastName,
                 'email' => $this->faker->unique()->safeEmail,
-                'password' => 'test',
+                'password' => password_hash('test', PASSWORD_DEFAULT),
             ]);
         }
     }

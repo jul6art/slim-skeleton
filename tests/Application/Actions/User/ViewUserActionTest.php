@@ -7,9 +7,9 @@ use App\Application\Actions\ActionError;
 use App\Application\Actions\ActionPayload;
 use App\Application\Actions\Constants\ActionErrorName;
 use App\Application\Handlers\HttpErrorHandler;
-use App\Domain\User\User;
-use App\Domain\User\UserNotFoundException;
-use App\Domain\User\UserRepository;
+use App\Domain\Entity\User;
+use App\Domain\Entity\UserNotFoundException;
+use App\Domain\Entity\UserRepository;
 use DI\Container;
 use Slim\Middleware\ErrorMiddleware;
 use Tests\TestCase;
@@ -51,7 +51,7 @@ class ViewUserActionTest extends TestCase
         $responseFactory = $app->getResponseFactory();
 
         $errorHandler = new HttpErrorHandler($callableResolver, $responseFactory);
-        $errorMiddleware = new ErrorMiddleware($callableResolver, $responseFactory, true, false ,false);
+        $errorMiddleware = new ErrorMiddleware($callableResolver, $responseFactory, true, false, false);
         $errorMiddleware->setDefaultErrorHandler($errorHandler);
 
         $app->add($errorMiddleware);

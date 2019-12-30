@@ -1,12 +1,12 @@
 <?php
 
-Namespace App\Domain\User;
+namespace App\Domain\Entity;
 
 use App\Domain\Constants\TableName;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class User
+ * Class Entity
  * @package App\Infrastructure\Model
  */
 class User extends Model
@@ -111,16 +111,5 @@ class User extends Model
     public function getFullName(): string
     {
         return "$this->firstName $this->lastName";
-    }
-
-    /**
-     * @return array
-     */
-    public function getEmailVariables(): array
-    {
-        return [
-            'full_Name' => $this->getFullName(),
-            'email' => $this->getEmail(),
-        ];
     }
 }

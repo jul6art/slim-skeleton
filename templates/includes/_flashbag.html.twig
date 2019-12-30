@@ -1,0 +1,5 @@
+{% for level, messages in flash() %}
+    {% for message in messages %}
+        <p style="background-color: white; color: red;">{{ level|upper ~ '! - ' ~ message }}</p>
+    {% endfor %}
+{% endfor %}
