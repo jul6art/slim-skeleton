@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2fc6f3682c395bd41e09a9a72510ed67",
+    "content-hash": "9932119d8e8d2717d22f3f91b26ed83d",
     "packages": [
         {
             "name": "cakephp/cache",
@@ -461,20 +461,25 @@
         },
         {
             "name": "fullpipe/twig-webpack-extension",
-            "version": "v2.0.1",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fullpipe/twig-webpack-extension.git",
-                "reference": "62751b8b6a0aed72b4ecfa005bd0aeaf96218681"
+                "reference": "b9585d4262659c91448b2c6fa025afbac70a9968"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fullpipe/twig-webpack-extension/zipball/62751b8b6a0aed72b4ecfa005bd0aeaf96218681",
-                "reference": "62751b8b6a0aed72b4ecfa005bd0aeaf96218681",
+                "url": "https://api.github.com/repos/fullpipe/twig-webpack-extension/zipball/b9585d4262659c91448b2c6fa025afbac70a9968",
+                "reference": "b9585d4262659c91448b2c6fa025afbac70a9968",
                 "shasum": ""
             },
             "require": {
-                "twig/twig": "^1.20 || ^2.0"
+                "ext-json": "*",
+                "php": "^7.2",
+                "twig/twig": "^2.0||^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6|^7|^8"
             },
             "type": "library",
             "autoload": {
@@ -498,7 +503,7 @@
                 "twig",
                 "webpack"
             ],
-            "time": "2017-04-20T09:53:55+00:00"
+            "time": "2019-12-27T20:42:48+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -3066,16 +3071,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.12.2",
+            "version": "v2.12.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "d761fd1f1c6b867ae09a7d8119a6d95d06dc44ed"
+                "reference": "97b6311585cae66a26833b14b33785f5797f7d39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d761fd1f1c6b867ae09a7d8119a6d95d06dc44ed",
-                "reference": "d761fd1f1c6b867ae09a7d8119a6d95d06dc44ed",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/97b6311585cae66a26833b14b33785f5797f7d39",
+                "reference": "97b6311585cae66a26833b14b33785f5797f7d39",
                 "shasum": ""
             },
             "require": {
@@ -3085,8 +3090,7 @@
             },
             "require-dev": {
                 "psr/container": "^1.0",
-                "symfony/debug": "^3.4|^4.2",
-                "symfony/phpunit-bridge": "^4.4@dev|^5.0"
+                "symfony/phpunit-bridge": "^4.4|^5.0"
             },
             "type": "library",
             "extra": {
@@ -3115,7 +3119,6 @@
                 },
                 {
                     "name": "Twig Team",
-                    "homepage": "https://twig.symfony.com/contributors",
                     "role": "Contributors"
                 },
                 {
@@ -3129,7 +3132,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2019-11-11T16:52:09+00:00"
+            "time": "2019-12-28T07:12:03+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
