@@ -3,6 +3,7 @@
 namespace App\Application\Middleware;
 
 use App\Application\Services\Interfaces\AuthInterface;
+use App\Application\Twig\Extension\CsrfExtension;
 use App\Application\Twig\Extension\PathExtension;
 use App\Application\Twig\Extension\DumpExtension;
 use App\Application\Twig\Extension\TranslatorExtension;
@@ -48,10 +49,6 @@ class TwigExtensionsMiddleware implements Middleware
      */
     public function process(Request $request, RequestHandler $handler): Response
     {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-
         /**
          * @TODO make usage of tokenStorageInterface
          */
@@ -66,6 +63,7 @@ class TwigExtensionsMiddleware implements Middleware
         $this->twig->addExtension(new TranslatorExtension($this->container->get(Translator::class)));
         $this->twig->addExtension(new DumpExtension());
         $this->twig->addExtension(new PathExtension($request));
+        $this->twig->addExtension(new CsrfExtension($this->container, $request));
         $this->twig->addExtension(new WebpackExtension(
             __DIR__ . '/../../../public/assets/manifest.json',
             'assets/',

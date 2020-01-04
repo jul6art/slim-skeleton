@@ -1,8 +1,9 @@
+### V1 skeleton
+
 https://colorlib.com/preview/theme/martin/index.html#
 
 - users 
     register and reset password
-        + csrf
         + respect validation and unique email assert
         + revoir gestion forms et tester injection
     roles + annotations granted ou voter (+ abstractcontroller gettoken isgranted denyacces ...)
@@ -10,9 +11,7 @@ https://colorlib.com/preview/theme/martin/index.html#
 - abstract crud et crud users
     datatables simples non ajax (+ export etc)
     theme backoffice minimaliste 
-    theme email
 
-- cache
 - forker pour devinthehood
     quelques phrases choc si possible avec un arbre de décision animé
         mettre compétences en avant

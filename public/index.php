@@ -5,8 +5,11 @@ use App\Application\Handlers\HttpErrorHandler;
 use App\Application\Handlers\ShutdownHandler;
 use App\Application\ResponseEmitter\ResponseEmitter;
 use DI\ContainerBuilder;
+use Slim\Csrf\Guard;
 use Slim\Factory\AppFactory;
 use Slim\Factory\ServerRequestCreatorFactory;
+
+session_start();
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -58,6 +61,12 @@ $errorHandler = new HttpErrorHandler($callableResolver, $responseFactory);
 // Create Shutdown Handler
 $shutdownHandler = new ShutdownHandler($request, $errorHandler, $displayErrorDetails);
 register_shutdown_function($shutdownHandler);
+
+// Register CSRF Protection
+$container->set('csrf', function () use ($responseFactory) {
+    return new Guard($responseFactory);
+});
+$app->add('csrf');
 
 // Parse json, form data and xml
 $app->addBodyParsingMiddleware();

@@ -4,6 +4,7 @@
     <form method="post" action="{{ url('app_login', {locale: app.locale}) }}">
         <input type="text" name="email">
         <input type="text" name="password">
+        {{ csrf_token() }}
         <input type="submit">
     </form>
 {% endblock content %}
