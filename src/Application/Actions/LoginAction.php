@@ -36,6 +36,7 @@ class LoginAction extends AbstractAction
             return $this->redirectToRoute($response, 'app_homepage_i18n');
         }
 
-        return $this->twig->render($this->response, 'security/login.html.twig');
+        //return $this->twig->render($this->response, 'security/login.html.twig');
+        return $this->twig->render($this->response, 'layout/layout_login.html.twig');
     }
 }

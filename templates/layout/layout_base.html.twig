@@ -12,25 +12,13 @@
         {% include 'includes/_stylesheets.html.twig' %}
     {% endblock stylesheets %}
 </head>
-<body>
-    <aside style="width: 30%; float: left">
-        {% include 'includes/_navbar.html.twig' %}
-    </aside>
-    <section style="width: 70%; float: left">
-        <center>
-            <h1>This is a demo</h1>
-            <img src="{{ asset('img/logo.png') }}">
-            <h2>Keep calm</h2>
-            {% include 'includes/_flashbag.html.twig' %}
-        </center>
-    </section>
-    <div>
-        {% block content %}
-        {% endblock content %}
-    </div>
+<body class="{% block body_class %}app{% endblock body_class %}">
+    {% block body %}
+        {% include 'includes/_javascripts.html.twig' %}
+    {% endblock body %}
 
-{% block javascripts %}
-    {% include 'includes/_javascripts.html.twig' %}
-{% endblock javascripts %}
+    {% block javascripts %}
+        {% include 'includes/_javascripts.html.twig' %}
+    {% endblock javascripts %}
 </body>
 </html>
