@@ -4,6 +4,7 @@ namespace App\Application\Twig\Extension;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Interfaces\RouteParserInterface;
+use Slim\Psr7\Uri;
 use Slim\Routing\RouteContext;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -64,10 +65,17 @@ class PathExtension extends AbstractExtension
      */
     public function fullUrlFor(string $routeName, array $data = [], array $queryParams = []): string
     {
-        return $this->router->fullUrlFor($routeName, $data, $queryParams);
+        /**
+         * @TODO Build Uri with scheme, host, ...
+         */
+        //return $this->router->fullUrlFor(new Uri(), $routeName, $data, $queryParams);
+
+        return '';
     }
 
     /**
+     * @deprecated use urlFor method instead
+     *
      * @param string $routeName
      * @param array $data
      * @param array $queryParams

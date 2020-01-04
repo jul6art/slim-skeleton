@@ -37,6 +37,7 @@
         "slim/psr7": "^0.6",
         "slim/slim": "^4.1",
         "slim/twig-view": "3.0.0",
+        "swiftmailer/swiftmailer": "^6.2",
         "vlucas/phpdotenv": "^4.1"
     },
     "require-dev": {
@@ -54,11 +55,14 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
     },
     "scripts": {
         "start": "php -S localhost:8080 -t public",
         "test": "phpunit",
         "cli": "php public/index.php"
+    },
+    "conflict": {
+        "symfony/symfony": "*"
     }
 }

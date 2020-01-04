@@ -2,7 +2,6 @@ https://colorlib.com/preview/theme/martin/index.html#
 
 - users 
     register and reset password
-        + swift mailer (voir vidéo Grafikart)
         + csrf
         + respect validation and unique email assert
         + revoir gestion forms et tester injection
@@ -15,7 +14,7 @@ https://colorlib.com/preview/theme/martin/index.html#
 
 - cache
 - forker pour devinthehood
-    quelques phrases choc si possible avec un arbe de décision animé
+    quelques phrases choc si possible avec un arbre de décision animé
         mettre compétences en avant
             symfony
             flex

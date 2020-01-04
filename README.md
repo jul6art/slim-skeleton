@@ -31,7 +31,7 @@ Includes
 * **<a href="https://github.com/fullpipe/twig-webpack-extension" target="_blank">webpack</a>**
 * **<a href="https://github.com/illuminate/database" target="_blank">illuminate database</a>**
 * **<a href="https://github.com/illuminate/translation" target="_blank">illuminate translation</a>**
-* **swiftmailer**
+* **<a href="https://github.com/swiftmailer/swiftmailer " target="_blank">swiftmailer</a>**
 
 Commands
 --------

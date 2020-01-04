@@ -52,11 +52,15 @@ class TwigExtensionsMiddleware implements Middleware
             session_start();
         }
 
-        // @TODO make usage of tokenStorageInterface
+        /**
+         * @TODO make usage of tokenStorageInterface
+         */
         $twigApp = $this->twig->getEnvironment()->getGlobals()['app'] ?? [];
         $this->twig->getEnvironment()->addGlobal('app', array_replace($twigApp, [
             'user' => $this->container->get(AuthInterface::class)->user(),
         ]));
+
+        $this->twig->getEnvironment()->addGlobal('project_name', $this->container->get('settings')['project_name']);
 
         $this->twig->addExtension(new TwigMessages(new Messages()));
         $this->twig->addExtension(new TranslatorExtension($this->container->get(Translator::class)));

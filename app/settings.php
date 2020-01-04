@@ -12,12 +12,14 @@ return function (ContainerBuilder $containerBuilder) {
     // Global Settings Object
     $containerBuilder->addDefinitions([
         'settings' => [
+            'project_name' => 'Slim Skeleton',
             'default_locale' => 'en',
             'available_locales' => [
                 'en',
                 'fr',
             ],
             'project_dir' => __DIR__ . '/../',
+            'templates_dir' => __DIR__ . '/../templates/',
             'translations_dir' => __DIR__ . '/../translations/',
             'displayErrorDetails' => true, // Should be set to false in production
             'logger' => [
@@ -31,6 +33,18 @@ return function (ContainerBuilder $containerBuilder) {
                 'database' => getenv('DATABASE_NAME'),
                 'username' => getenv('DATABASE_USER'),
                 'password' => getenv('DATABASE_PASSWORD'),
+            ],
+            'email' => [
+                'disable_delivery' => getenv('EMAIL_DISABLE_DELIVERY'),
+                'host' => getenv('EMAIL_HOST'),
+                'port' => getenv('EMAIL_PORT'),
+                'from' => [
+                    'address' => getenv('EMAIL_FROM_ADDRESS'),
+                    'name' => getenv('EMAIL_FROM_NAME'),
+                ],
+                'debug' => [
+                    getenv('EMAIL_DEBUG_ADDRESS'),
+                ],
             ],
         ],
         'commands' => [

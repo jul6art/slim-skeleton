@@ -21,8 +21,8 @@ class LoginAction extends AbstractAction
         if ($request->getMethod() === 'POST') {
             $data = $request->getParsedBody();
             $auth = $this->auth->attempt(
-                filter_var($data['email'], FILTER_VALIDATE_EMAIL),
-                filter_var($data['password'], FILTER_SANITIZE_STRING)
+                $data['email'],
+                $data['password']
             );
 
             $response = new Response();

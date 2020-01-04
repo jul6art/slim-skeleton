@@ -1,0 +1,24 @@
+{% extends 'layout/layout_email.html.twig' %}
+
+{% set logo = 'https://github.com/jul6art/slim-skeleton/blob/master/assets/img/logo.png?raw=true' %}
+
+{% set links = [
+    {
+        text: 'email.test.link.text'|trans,
+        url: 'https://devinthehood.com',
+    },
+] %}
+
+{% block subject %}
+    {%- autoescape false -%}
+        {{ 'email.test.subject'|trans({'name': fullname}) }}
+    {%- endautoescape -%}
+{% endblock subject %}
+
+{% block body_html %}
+    {{ 'email.test.message'|trans({
+        'name': 'John Doe',
+        'url': 'https://devinthehood.com',
+        'project_name': project_name
+    })|raw }}
+{% endblock body_html %}

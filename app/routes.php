@@ -4,6 +4,7 @@ declare(strict_types=1);
 use App\Application\Actions\HomeAction;
 use App\Application\Actions\LoginAction;
 use App\Application\Actions\LogoutAction;
+use App\Application\Actions\Test\EmailAction;
 use App\Application\Actions\User\ListAction;
 use App\Application\Actions\User\ViewAction;
 use Slim\App;
@@ -11,6 +12,11 @@ use Slim\Exception\HttpNotFoundException;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
 return function (App $app) {
+    /**
+     * @TODO remove it! Debug purpose
+     */
+    $app->get('/email', EmailAction::class)->setName('app_test_email');
+
     $app->get('/', HomeAction::class)->setName('app_homepage');
     $app->get('/{locale}/home', HomeAction::class)->setName('app_homepage_i18n');
 

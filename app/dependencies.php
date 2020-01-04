@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 use App\Application\Services\Auth;
 use App\Application\Services\Interfaces\AuthInterface;
+use App\Application\Services\Interfaces\MailerInterface;
+use App\Application\Services\Mailer;
 use App\Domain\Repository\UserRepository;
 use App\Infrastructure\Persistence\Database;
 use App\Infrastructure\Persistence\Interfaces\DatabaseInterface;
@@ -18,6 +20,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Slim\Flash\Messages;
 use Slim\Views\Twig;
+use Twig\Loader\FilesystemLoader;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
@@ -51,7 +54,8 @@ return function (ContainerBuilder $containerBuilder) {
 
     $containerBuilder->addDefinitions([
         Twig::class => function (ContainerInterface $c) {
-            return new Twig($c->get('settings')['project_dir'] . 'templates', ['cache' => false]);
+            $loader = new FilesystemLoader($c->get('settings')['templates_dir']);
+            return new Twig($loader, ['cache' => false]);
         },
     ]);
 
@@ -66,6 +70,20 @@ return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
         DatabaseInterface::class => function (ContainerInterface $c) {
             return new Database();
+        },
+    ]);
+
+    $containerBuilder->addDefinitions([
+        MailerInterface::class => function (ContainerInterface $c) {
+            $emailSettings = $c->get('settings')['email'];
+            return new Mailer(
+                new Swift_Mailer(new Swift_SmtpTransport($emailSettings['host'], $emailSettings['port'])),
+                $c->get(Twig::class)->getEnvironment(),
+                $emailSettings['from']['address'],
+                $emailSettings['from']['name'],
+                $emailSettings['debug'],
+                $emailSettings['disable_delivery'] == 'true'
+            );
         },
     ]);
 };
