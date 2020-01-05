@@ -1,21 +1,24 @@
-<nav>
-    <ul>
-        <li>
-            {% if app.user is null %}
-                <a href="{{ url('app_login', {locale: app.locale}) }}">log in</a>
-            {% else %}
-                <a href="{{ url('app_logout', {locale: app.locale}) }}">log out</a>
-            {% endif %}
-        </li>
-        <li>
-            <a href="{{ url('app_homepage') }}">homepage</a>
-        </li>
-        <li>
-            <a href="{{ url('app_user_list', {locale: 'fr'}) }}">utilisateurs</a>
-            <a href="{{ url('app_user_list', {locale: 'en'}) }}">users</a>
-        </li>
-        <li>
-            <a href="{{ url('app_user_view', {locale: app.locale, id: 1}) }}">user 1</a>
-        </li>
-    </ul>
-</nav>
+<ul class="vertical-nav-menu">
+    <li class="app-sidebar__heading">{{ 'navbar.dashboard'|trans }}</li>
+    <li>
+        <a href="{{ url('app_homepage_i18n', {locale: app.locale}) }}">
+            <i class="metismenu-icon pe-7s-rocket"></i>
+            {{ 'navbar.home'|trans }}
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <i class="metismenu-icon pe-7s-user"></i>
+            {{ 'navbar.users.title'|trans }}
+            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+        </a>
+        <ul>
+            <li>
+                <a href="{{ url('app_user_list', {locale: app.locale}) }}">{{ 'navbar.users.list'|trans }}</a>
+            </li>
+            <li>
+                <a href="#!">{{ 'navbar.users.create'|trans }}</a>
+            </li>
+        </ul>
+    </li>
+</ul>

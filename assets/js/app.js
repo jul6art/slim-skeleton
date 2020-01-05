@@ -4,6 +4,4 @@ import "../css/app.scss";
 import 'jquery';
 import 'jquery-ui';
 import 'bootstrap';
-import 'bootstrap';
-
-console.log('WEBPACK IS INSTALLED!');
+import './main';

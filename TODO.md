@@ -2,6 +2,10 @@
 
 https://colorlib.com/preview/theme/martin/index.html#
 
+- theme backoffice
+    flashbag
+    locale switcher
+    datatables simples non ajax (+ export etc) 
 - users 
     register and reset password
         + respect validation and unique email assert
@@ -9,8 +13,7 @@ https://colorlib.com/preview/theme/martin/index.html#
     roles + annotations granted ou voter (+ abstractcontroller gettoken isgranted denyacces ...)
 - pages d erreur
 - abstract crud et crud users
-    datatables simples non ajax (+ export etc)
-    theme backoffice minimaliste 
+        
 
 - forker pour devinthehood
     quelques phrases choc si possible avec un arbre de décision animé
