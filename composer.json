@@ -17,7 +17,7 @@
         "php-di/php-di": "^6.0",
         "robmorgan/phinx": "^0.11.4",
         "slim/csrf": "^1.0",
-        "slim/psr7": "^0.6",
+        "slim/psr7": "^1.0",
         "slim/slim": "^4.1",
         "slim/twig-view": "3.0.0",
         "swiftmailer/swiftmailer": "^6.2",
