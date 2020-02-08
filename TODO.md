@@ -13,9 +13,9 @@ https://demo.dashboardpack.com/architectui-html-free/index.html
         + avatar
     roles + annotations granted ou voter (+ abstractcontroller gettoken isgranted denyacces ...)
 - pages d erreur
+- corriger firewall
 - abstract crud et crud users
-- settings page
-- ? statistiques page
+- settings page avec helpers twig et service trait pour recupérer les settings
 - batterie de tests et coverage
         
 - forker pour devinthehood
