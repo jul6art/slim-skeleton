@@ -55,11 +55,12 @@ class TwigExtensionsMiddleware implements Middleware
         $twigApp = $this->twig->getEnvironment()->getGlobals()['app'] ?? [];
         $this->twig->getEnvironment()->addGlobal('app', array_replace($twigApp, [
             'user' => $this->container->get(AuthInterface::class)->user(),
+            'available_locales' => $this->container->get('settings')['available_locales'],
         ]));
 
         $this->twig->getEnvironment()->addGlobal('project_name', $this->container->get('settings')['project_name']);
 
-        $this->twig->addExtension(new TwigMessages(new Messages()));
+        $this->twig->addExtension(new TwigMessages($this->container->get(Messages::class)));
         $this->twig->addExtension(new TranslatorExtension($this->container->get(Translator::class)));
         $this->twig->addExtension(new DumpExtension());
         $this->twig->addExtension(new PathExtension($request));

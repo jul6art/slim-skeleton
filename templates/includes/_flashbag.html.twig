@@ -1,5 +1,7 @@
 {% for level, messages in flash() %}
     {% for message in messages %}
-        <p style="background-color: white; color: red;">{{ level|upper ~ '! - ' ~ message }}</p>
+        <span class="flash-message" data-trigger="toast" data-level="{{ level }}">
+            {{ message|trans }}
+        </span>
     {% endfor %}
 {% endfor %}

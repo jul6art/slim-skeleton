@@ -1,23 +1,22 @@
 <ul class="vertical-nav-menu">
     <li class="app-sidebar__heading">{{ 'navbar.dashboard'|trans }}</li>
     <li>
-        <a href="{{ url('app_homepage_i18n', {locale: app.locale}) }}">
+        <a href="{{ url('app_homepage_i18n', {locale: app.locale}) }}"{{ isCurrent('app_homepage') or isCurrent('app_homepage_i18n') ? ' class="mm-active"' }}>
             <i class="metismenu-icon pe-7s-rocket"></i>
             {{ 'navbar.home'|trans }}
         </a>
     </li>
-    <li>
+    <li{{ isCurrent('app_user_list') or isCurrent('app_user_create') or isCurrent('app_user_edit') ? ' class="mm-active"' }}>
         <a href="#">
-            <i class="metismenu-icon pe-7s-user"></i>
-            {{ 'navbar.users.title'|trans }}
+            <i class="metismenu-icon pe-7s-user"></i> {{ 'navbar.users.title'|trans }}
             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
         </a>
         <ul>
             <li>
-                <a href="{{ url('app_user_list', {locale: app.locale}) }}">{{ 'navbar.users.list'|trans }}</a>
+                <a href="{{ url('app_user_list', {locale: app.locale}) }}"{{ isCurrent('app_user_list') ? ' class="mm-active"' }}>{{ 'navbar.users.list'|trans }}</a>
             </li>
             <li>
-                <a href="#!">{{ 'navbar.users.create'|trans }}</a>
+                <a href="#!"{{ isCurrent('app_user_create') ? ' class="mm-active"' }}>{{ 'navbar.users.create'|trans }}</a>
             </li>
         </ul>
     </li>

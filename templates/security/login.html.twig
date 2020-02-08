@@ -1,10 +1,31 @@
-{% extends 'layout/layout_backoffice.html.twig' %}
+{% extends 'layout/layout_login.html.twig' %}
 
 {% block content %}
+    <h4 class="fw-300 c-grey-900 mB-40">Login</h4>
     <form method="post" action="{{ url('app_login', {locale: app.locale}) }}">
-        <input type="text" name="email">
-        <input type="text" name="password">
+        <div class="form-group">
+            <label class="text-normal text-dark">Username</label>
+            <input type="email" name="email" class="form-control" placeholder="john.doe@example.net">
+        </div>
+        <div class="form-group">
+            <label class="text-normal text-dark">Password</label>
+            <input type="password" name="password" class="form-control" placeholder="pass">
+        </div>
+        <div class="form-group">
+            <div class="peers ai-c jc-sb fxw-nw">
+                <div class="peer">
+                    <div class="checkbox checkbox-circle checkbox-info peers ai-c">
+                        <input type="checkbox" id="inputCall1" name="inputCheckboxesCall" class="peer">
+                        <label for="inputCall1" class=" peers peer-greed js-sb ai-c">
+                            <span class="peer peer-greed">Remember Me</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="peer">
+                    <button class="btn btn-primary" type="submit">Login</button>
+                </div>
+            </div>
+        </div>
         {{ csrf_token() }}
-        <input type="submit">
     </form>
 {% endblock content %}

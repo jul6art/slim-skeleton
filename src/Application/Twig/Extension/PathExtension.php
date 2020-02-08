@@ -3,6 +3,7 @@
 namespace App\Application\Twig\Extension;
 
 use Psr\Http\Message\ServerRequestInterface;
+use Slim\Interfaces\RouteInterface;
 use Slim\Interfaces\RouteParserInterface;
 use Slim\Psr7\Uri;
 use Slim\Routing\RouteContext;
@@ -16,6 +17,11 @@ use Twig\TwigFunction;
 class PathExtension extends AbstractExtension
 {
     /**
+     * @var RouteInterface|null
+     */
+    private $route;
+
+    /**
      * @var RouteParserInterface
      */
     private $router;
@@ -26,6 +32,7 @@ class PathExtension extends AbstractExtension
      */
     public function __construct(ServerRequestInterface $request)
     {
+        $this->route = RouteContext::fromRequest($request)->getRoute();
         $this->router = RouteContext::fromRequest($request)->getRouteParser();
     }
 
@@ -36,7 +43,10 @@ class PathExtension extends AbstractExtension
     {
         return [
             new TwigFunction('asset', [$this, 'asset']),
+            new TwigFunction('currentRoute', [$this, 'getCurrentRoute']),
+            new TwigFunction('currentRouteName', [$this, 'getCurrentRouteName']),
             new TwigFunction('fullUrl', [$this, 'fullUrlFor']),
+            new TwigFunction('isCurrent', [$this, 'isCurrentRoute']),
             new TwigFunction('relativeUrl', [$this, 'relativeUrlFor']),
             new TwigFunction('url', [$this, 'urlFor']),
         ];
@@ -58,6 +68,22 @@ class PathExtension extends AbstractExtension
     }
 
     /**
+     * @return RouteInterface|null
+     */
+    public function getCurrentRoute(): ?RouteInterface
+    {
+        return $this->route;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCurrentRouteName(): ?string
+    {
+        return $this->route ? $this->route->getName() : null;
+    }
+
+    /**
      * @param string $routeName
      * @param array $data
      * @param array $queryParams
@@ -71,6 +97,15 @@ class PathExtension extends AbstractExtension
         //return $this->router->fullUrlFor(new Uri(), $routeName, $data, $queryParams);
 
         return '';
+    }
+
+    /**
+     * @param string $routeName
+     * @return bool
+     */
+    public function isCurrentRoute(string $routeName): bool
+    {
+        return $routeName === ($this->route ? $this->route->getName() : null);
     }
 
     /**

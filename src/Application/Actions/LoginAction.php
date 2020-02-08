@@ -28,15 +28,14 @@ class LoginAction extends AbstractAction
             $response = new Response();
 
             if (!$auth) {
-                $this->flash->addMessage('error', 'Could not sign you in with those details');
+                $this->addFlash('error', 'Could not sign you in with those details');
                 return $this->redirectToRoute($response, 'app_login');
             }
 
-            $this->flash->addMessage('success', 'Successful Login');
+            $this->addFlash('success', 'Successful Login');
             return $this->redirectToRoute($response, 'app_homepage_i18n');
         }
 
-        //return $this->twig->render($this->response, 'security/login.html.twig');
-        return $this->twig->render($this->response, 'layout/layout_login.html.twig');
+        return $this->render($this->response, 'security/login.html.twig');
     }
 }

@@ -3,18 +3,19 @@
 https://colorlib.com/preview/theme/martin/index.html#
 
 - theme backoffice
-    flashbag
-    locale switcher
+    translations layout
     datatables simples non ajax (+ export etc) 
 - users 
     register and reset password
+        + recaptcha
         + respect validation and unique email assert
         + revoir gestion forms et tester injection
+        + avatar
     roles + annotations granted ou voter (+ abstractcontroller gettoken isgranted denyacces ...)
 - pages d erreur
 - abstract crud et crud users
+- batterie de tests et coverage
         
-
 - forker pour devinthehood
     quelques phrases choc si possible avec un arbre de décision animé
         mettre compétences en avant

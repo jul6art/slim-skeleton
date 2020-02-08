@@ -33,7 +33,7 @@ class ViewAction extends UserAbstractAction
 
         $this->logger->info("Entity of id `{$id}` was viewed.");
 
-        return $this->twig->render($this->response, 'user/view.html.twig', [
+        return $this->render($this->response, 'user/view.html.twig', [
             'user' => $user,
         ]);
     }

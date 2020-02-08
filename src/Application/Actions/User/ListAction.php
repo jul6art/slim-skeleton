@@ -26,12 +26,17 @@ class ListAction extends UserAbstractAction
         $route = RouteContext::fromRequest($request)->getRoute();
         $router = RouteContext::fromRequest($request)->getRouteParser();
 
-        $this->flash->addMessage('success', "Users list was viewed.");
+        /**
+         * @TODO IF YOU DON'T WANT INSTANT FLASH OR BEFORE REDIRECT, USE
+         *
+         * $this->flash->addMessage() instead
+         */
+        $this->addFlash('success', "Success flash message");
 
         // $this->dump($this->translator->get('messages.greet', ['name' => 'Johnnyhood'], 'fr'));
         // $this->dd($this->translator->get('messages.greet', ['name' => 'Johnnyhood']));
 
-        return $this->twig->render($this->response, 'user/list.html.twig', [
+        return $this->render($this->response, 'user/list.html.twig', [
             'users' => $this->userRepository->findAll(),
         ]);
     }

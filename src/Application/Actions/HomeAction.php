@@ -21,7 +21,7 @@ class HomeAction extends AbstractAction
      */
     protected function action(ServerRequestInterface $request): Response
     {
-        return $this->twig->render($this->response, 'default/index.html.twig', [
+        return $this->render($this->response, 'default/index.html.twig', [
             'foo' => 'bar'
         ]);
     }

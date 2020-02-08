@@ -7,6 +7,7 @@ use App\Application\Services\Interfaces\AuthInterface;
 use App\Application\Services\Traits\DumperTrait;
 use App\Domain\DomainException\DomainRecordNotFoundException;
 use Illuminate\Contracts\Translation\Translator;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Log\LoggerInterface;
@@ -16,6 +17,9 @@ use Slim\Flash\Messages;
 use Slim\Interfaces\RouteParserInterface;
 use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 /**
  * Class AbstractAction
@@ -118,6 +122,15 @@ abstract class AbstractAction
     abstract protected function action(Request $request): Response;
 
     /**
+     * @param string $key
+     * @param string $message
+     */
+    protected function addFlash(string $key, string $message): void
+    {
+        $this->flash->addMessageNow($key, $message);
+    }
+
+    /**
      * @return array|object
      * @throws HttpBadRequestException
      */
@@ -130,6 +143,20 @@ abstract class AbstractAction
         }
 
         return $input;
+    }
+
+    /**
+     * @param Response $response
+     * @param string $template
+     * @param array $data
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function render(ResponseInterface $response, string $template, array $data = []): ResponseInterface
+    {
+        return $this->twig->render($response, $template, $data);
     }
 
     /**
