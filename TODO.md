@@ -1,10 +1,10 @@
 ### V1 skeleton
 
-https://colorlib.com/preview/theme/martin/index.html#
+https://demo.dashboardpack.com/architectui-html-free/index.html
 
 - theme backoffice
-    translations layout
-    datatables simples non ajax (+ export etc) 
+    + translations layout
+    + datatables simples non ajax (+ export etc) 
 - users 
     register and reset password
         + recaptcha
@@ -14,6 +14,8 @@ https://colorlib.com/preview/theme/martin/index.html#
     roles + annotations granted ou voter (+ abstractcontroller gettoken isgranted denyacces ...)
 - pages d erreur
 - abstract crud et crud users
+- settings page
+- ? statistiques page
 - batterie de tests et coverage
         
 - forker pour devinthehood

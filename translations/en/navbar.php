@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'account' => [
+        'change_password' => 'Changer de mot de passe',
+        'logout' => 'Se déconnecter',
+        'profile' => 'Mon profil',
+    ],
     'dashboard' => 'Dashboard',
     'home' => 'Home',
     'locales' => [

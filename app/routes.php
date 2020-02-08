@@ -14,8 +14,9 @@ use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 return function (App $app) {
     /**
      * @TODO remove it! Debug purpose
+     *
+     * $app->get('/email', EmailAction::class)->setName('app_test_email');
      */
-    $app->get('/email', EmailAction::class)->setName('app_test_email');
 
     $app->get('/', HomeAction::class)->setName('app_homepage');
     $app->get('/{locale}/home', HomeAction::class)->setName('app_homepage_i18n');
