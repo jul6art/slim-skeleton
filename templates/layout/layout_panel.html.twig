@@ -1,0 +1,17 @@
+<div class="mb-3 card">
+    <div class="card-header">
+        <i class="header-icon lnr-laptop-phone icon-gradient bg-plum-plate"> </i>
+        {% block panel_head %}{% endblock panel_head %}
+        <div class="btn-actions-pane-right actions-icon-btn">
+            <button class="btn-icon btn-icon-only btn btn-link"><i class="pe-7s-leaf btn-icon-wrapper"></i></button>
+            <button class="btn-icon btn-icon-only btn btn-link"><i class="pe-7s-cloud-download btn-icon-wrapper"></i></button>
+            {% block panel_toolbar %}{% endblock panel_toolbar %}
+        </div>
+    </div>
+    <div class="card-body">
+        {% block panel_body %}{% endblock panel_body %}
+    </div>
+    <div class="d-block text-right card-footer">
+        {% block panel_footer %}{% endblock panel_footer %}
+    </div>
+</div>

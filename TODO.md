@@ -11,11 +11,12 @@ https://demo.dashboardpack.com/architectui-html-free/index.html
         + respect validation and unique email assert
         + revoir gestion forms et tester injection
         + avatar
+            afficher avatar, menu user et change locale dans menu et menu responsive
     roles + annotations granted ou voter (+ abstractcontroller gettoken isgranted denyacces ...)
 - pages d erreur
 - corriger firewall
 - abstract crud et crud users
-- settings page avec helpers twig et service trait pour recupérer les settings
+- settings page (ou sidebar avec switches) avec helpers twig et service trait pour recupérer les settings
 - batterie de tests et coverage
         
 - forker pour devinthehood
