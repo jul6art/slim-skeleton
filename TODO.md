@@ -20,7 +20,6 @@ https://demo.dashboardpack.com/architectui-html-free/index.html
 - batterie de tests et coverage
         
 - forker pour devinthehood
-    quelques phrases choc si possible avec un arbre de décision animé
         mettre compétences en avant
             symfony
             flex
@@ -29,9 +28,9 @@ https://demo.dashboardpack.com/architectui-html-free/index.html
             prestashop
             jenkins
             ....
-    + theme
+        mettre projets en avant: enoprimes, myenergy, cashlib, provencale, bccl, 
     + déployer
-    + migrer tout vsweb (signature email, linkedin, ...)
+    + migrer tout vsweb (signature email, CV linkedin, ...)
     
 sources
 -------
