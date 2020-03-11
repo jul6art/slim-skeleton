@@ -20,6 +20,8 @@ https://demo.dashboardpack.com/architectui-html-free/index.html
 - batterie de tests et coverage
         
 - forker pour devinthehood
+    pas de page about
+    seulement les projects dont t'es fier mon gars et les autres, tu COUPES
         mettre compétences en avant
             symfony
             flex
