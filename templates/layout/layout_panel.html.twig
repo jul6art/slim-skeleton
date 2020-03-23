@@ -1,14 +1,22 @@
 <div class="mb-3 card">
-    <div class="card-header">
-        {% block panel_head %}{% endblock panel_head %}
-        <div class="btn-actions-pane-right actions-icon-btn">
-            {% block panel_toolbar %}{% endblock panel_toolbar %}
+    {% if block('panel_head')|length or block('panel_toolbar')|length %}
+        <div class="card-header">
+            {% block panel_head %}{% endblock panel_head %}
+            {% if block('panel_toolbar')|length %}
+                <div class="btn-actions-pane-right actions-icon-btn">
+                    {% block panel_toolbar %}{% endblock panel_toolbar %}
+                </div>
+            {% endif %}
         </div>
-    </div>
-    <div class="card-body">
-        {% block panel_body %}{% endblock panel_body %}
-    </div>
-    <div class="d-block text-right card-footer">
-        {% block panel_footer %}{% endblock panel_footer %}
-    </div>
+    {% endif %}
+    {% if block('panel_body')|length %}
+        <div class="card-body">
+            {% block panel_body %}{% endblock panel_body %}
+        </div>
+    {% endif %}
+    {% if block('panel_footer')|length %}
+        <div class="d-block text-right card-footer">
+            {% block panel_footer %}{% endblock panel_footer %}
+        </div>
+    {% endif %}
 </div>

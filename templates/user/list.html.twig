@@ -1,11 +1,25 @@
-{% extends 'layout/layout_backoffice.html.twig' %}
+{% embed 'layout/layout_list.html.twig' with {
+    icon: 'fa fa-user',
+    title: 'subheader.user.list.title',
+    subtitle: 'subheader.user.list.subtitle',
+    actions: [
+        {
+            path: url('app_user_list', {locale: app.locale}),
+            icon: 'fa fa-plus',
+            text: 'subheader.user.actions.add.text'
+        }
+    ]
+} %}
 
-{% block content %}
-    <h1>{{ 'messages.greet'|trans({'name': 'twigy'}) }}</h1>
+    {% block list_panel_head %}TEST{% endblock list_panel_head %}
 
-    {% for user in users %}
-        <li>
-            {{ user.email }}
-        </li>
-    {% endfor %}
-{% endblock content %}
+    {% block list_panel_body %}
+        <h1>{{ 'messages.greet'|trans({'name': 'twigy'}) }}</h1>
+
+        {% for user in users %}
+            <li>
+                {{ user.email }}
+            </li>
+        {% endfor %}
+    {% endblock list_panel_body %}
+{% endembed %}

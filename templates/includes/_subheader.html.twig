@@ -1,0 +1,41 @@
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="{{ icon }} text-success">
+                </i>
+            </div>
+            <div>{{ title|trans|title }}
+                <div class="page-title-subheading">{{ subtitle|trans|title }}
+                </div>
+            </div>
+        </div>
+        <div class="page-title-actions">
+            {% if actions is defined and actions|length %}
+                <div class="d-inline-block dropdown">
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
+                    <span class="btn-icon-wrapper pr-2 opacity-7">
+                        <i class="fa fa-hand-pointer fa-w-20"></i>
+                    </span>
+                        {{ 'subheader.actions.text'|trans }}
+                    </button>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                        <ul class="nav flex-column">
+                            {% for action in actions %}
+                                <li class="nav-item">
+                                    <a href="{{ action.path }}" class="nav-link">
+                                        <i class="nav-link-icon {{ action.icon }}"></i>
+                                        <span>{{ action.text|trans }}</span>
+                                        {% if action.badge is defined %}
+                                            <div class="ml-auto badge badge-pill badge-secondary">{{ action.badge }}</div>
+                                        {% endif %}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

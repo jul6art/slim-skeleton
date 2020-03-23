@@ -1,0 +1,17 @@
+{% extends 'layout/layout_backoffice.html.twig' %}
+
+{% set panel_head = block('list_panel_head') ?? '' %}
+{% set panel_toolbar = block('list_panel_toolbar') ?? '' %}
+{% set panel_body = block('list_panel_body') ?? '' %}
+{% set panel_footer = block('list_panel_footer') ?? '' %}
+
+{% block content %}
+    {% include 'includes/_subheader.html.twig' %}
+
+    {% embed 'layout/layout_panel.html.twig' %}
+        {% block panel_head %}{{ panel_head|raw }}{% endblock panel_head %}
+        {% block panel_toolbar %}{{ panel_toolbar|raw }}{% endblock panel_toolbar %}
+        {% block panel_body %}{{ panel_body|raw }}{% endblock panel_body %}
+        {% block panel_footer %}{{ panel_footer|raw }}{% endblock panel_footer %}
+    {% endembed %}
+{% endblock content %}
