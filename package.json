@@ -8,7 +8,7 @@
     "flag-icon-css": "^3.4.6",
     "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",
-    "popper.js": "^1.16.0",
+    "popper.js": "^1.16.1",
     "toastr": "^2.1.4"
   },
   "devDependencies": {
