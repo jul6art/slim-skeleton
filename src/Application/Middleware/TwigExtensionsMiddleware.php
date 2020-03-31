@@ -4,12 +4,12 @@ namespace App\Application\Middleware;
 
 use App\Application\Services\Interfaces\AuthInterface;
 use App\Application\Twig\Extension\CsrfExtension;
+use App\Application\Twig\Extension\FlashExtension;
 use App\Application\Twig\Extension\PathExtension;
 use App\Application\Twig\Extension\DumpExtension;
 use App\Application\Twig\Extension\TranslatorExtension;
 use Fullpipe\TwigWebpackExtension\WebpackExtension;
 use Illuminate\Contracts\Translation\Translator;
-use Knlv\Slim\Views\TwigMessages;
 use Psr\Container\ContainerInterface;
 use Slim\Flash\Messages;
 use Slim\Views\Twig;
@@ -60,7 +60,7 @@ class TwigExtensionsMiddleware implements Middleware
 
         $this->twig->getEnvironment()->addGlobal('project_name', $this->container->get('settings')['project_name']);
 
-        $this->twig->addExtension(new TwigMessages($this->container->get(Messages::class)));
+        $this->twig->addExtension(new FlashExtension($this->container->get(Messages::class)));
         $this->twig->addExtension(new TranslatorExtension($this->container->get(Translator::class)));
         $this->twig->addExtension(new DumpExtension());
         $this->twig->addExtension(new PathExtension($request));
