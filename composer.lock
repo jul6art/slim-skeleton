@@ -593,7 +593,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v6.18.3",
+            "version": "v6.18.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -681,7 +681,7 @@
         },
         {
             "name": "illuminate/database",
-            "version": "v6.18.3",
+            "version": "v6.18.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
