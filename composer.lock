@@ -593,7 +593,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v6.18.6",
+            "version": "v6.18.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -637,7 +637,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v6.18.6",
+            "version": "v6.18.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -681,16 +681,16 @@
         },
         {
             "name": "illuminate/database",
-            "version": "v6.18.6",
+            "version": "v6.18.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "ed6552ff6b9a57ec6f2ed76e69c8a8cae500ad50"
+                "reference": "3779816fe65beab8bc3a335e472047e0665b5e7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/ed6552ff6b9a57ec6f2ed76e69c8a8cae500ad50",
-                "reference": "ed6552ff6b9a57ec6f2ed76e69c8a8cae500ad50",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/3779816fe65beab8bc3a335e472047e0665b5e7a",
+                "reference": "3779816fe65beab8bc3a335e472047e0665b5e7a",
                 "shasum": ""
             },
             "require": {
@@ -738,7 +738,7 @@
                 "orm",
                 "sql"
             ],
-            "time": "2020-03-23T14:15:03+00:00"
+            "time": "2020-04-24T10:45:07+00:00"
         },
         {
             "name": "illuminate/filesystem",
@@ -794,16 +794,16 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v6.18.6",
+            "version": "v6.18.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "6955d0c254ae55ede96be71309b5fb09693441cd"
+                "reference": "38cb5e56f30e6ecff3e88a0f3031139a0f6740d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/6955d0c254ae55ede96be71309b5fb09693441cd",
-                "reference": "6955d0c254ae55ede96be71309b5fb09693441cd",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/38cb5e56f30e6ecff3e88a0f3031139a0f6740d8",
+                "reference": "38cb5e56f30e6ecff3e88a0f3031139a0f6740d8",
                 "shasum": ""
             },
             "require": {
@@ -851,7 +851,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2020-03-24T20:01:29+00:00"
+            "time": "2020-04-21T13:29:27+00:00"
         },
         {
             "name": "illuminate/translation",
@@ -3222,16 +3222,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v5.0.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "99b831770e10807dca0979518e2c89edffef5978"
+                "reference": "c3879db7a68fe3e12b41263b05879412c87b27fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/99b831770e10807dca0979518e2c89edffef5978",
-                "reference": "99b831770e10807dca0979518e2c89edffef5978",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/c3879db7a68fe3e12b41263b05879412c87b27fd",
+                "reference": "c3879db7a68fe3e12b41263b05879412c87b27fd",
                 "shasum": ""
             },
             "require": {
@@ -3295,7 +3295,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2020-03-27T16:56:45+00:00"
+            "time": "2020-04-12T16:45:47+00:00"
         },
         {
             "name": "symfony/translation-contracts",
