@@ -47,13 +47,13 @@ $ composer install --no-suggest
 Yarn
 
 ```console
-yarn install
+$ yarn install
 ```
 
 Webpack
 
 ```console
-npx webpack --mode=development
+$ npx webpack --mode=development
 ```
 
 Drop database
