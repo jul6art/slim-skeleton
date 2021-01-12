@@ -17,7 +17,7 @@ Base slim project
 Requirements
 ------------
 
-* **php** >= 7.4
+* **php ^7.4**
 * **mysql**
 * **composer**
 * **yarn**
