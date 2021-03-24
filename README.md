@@ -40,38 +40,38 @@ Available commands (see **hook_local.sh** file)
 
 Composer
 
-```console
+```shell
 composer install --no-suggest
 ```
 
 Yarn
 
-```console
+```shell
 yarn install
 ```
 
 Webpack
 
-```console
+```shell
 npx webpack --mode=development
 ```
 
 Drop database
 
-```console
+```shell
 composer cli skeleton:database:drop
 ```
 
 Migrations (located in **src/Infrastructure/Migrations** directory)
 
-```console
+```shell
 vendor/bin/phinx create MyFirstMigration -c app/phinx.php   ## generate a migration
 vendor/bin/phinx migrate -c app/phinx.php                   ## migrate
 ```
 
 Fixtures (located in **src/Infrastructure/Fixtures** directory and declare in **settings.php** in fixtures section)
 
-```console
+```shell
 composer cli skeleton:fixtures:load
 ```
 
@@ -127,7 +127,7 @@ $containerBuilder->addDefinitions([
 
 You can now call that command with composer
 
-```console
+```shell
 composer cli skeleton:sample arg1 arg2
 ```
 
