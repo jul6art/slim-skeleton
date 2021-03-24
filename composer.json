@@ -4,7 +4,7 @@
     "description": "Slim framework Back-office package",
     "license": "MIT",
     "require": {
-        "php": ">=7.1",
+        "php": "^7.1 || ^8.0",
         "ext-json": "*",
         "ext-pdo": "*",
         "fullpipe/twig-webpack-extension": "^3.0",
